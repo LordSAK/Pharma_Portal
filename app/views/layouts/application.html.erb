@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title><%= full_title(yield(:title)) %></title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+<script src='http://www.google.com/jsapi'></script>
+	 <title><%= full_title(yield(:title)) %></title>
+  <%= stylesheet_link_tag    "application", media: "all"%>
+  <%= javascript_include_tag "application" %>
+  
+  <%= stylesheet_link_tag "style1" %>
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+  <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+
+
+
+
+  <%= render 'layouts/shim' %>
 </head>
 <body>
-
-<%= yield %>
+	<%= render 'layouts/header' %>
+    <div class="content">
+		<%= yield %>
+	</div>
 
 </body>
 </html>
