@@ -3,10 +3,15 @@ source 'https://rubygems.org'
 #ruby-gemset=railstutorial_rails_4_0
 
 gem 'rails', '4.0.2'
+gem 'bcrypt-ruby', '3.1.2'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
   gem 'rspec-rails', '2.13.1'
+end
+
+group :development do
+  gem 'annotate', '2.5.0'
 end
 
 group :test do
