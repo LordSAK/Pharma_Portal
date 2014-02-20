@@ -1,24 +1,44 @@
 <% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
+<h1 class="title">Sign up</h1>
 
-<div class="row">
-  <div class="span6 offset3">
+
     <%= form_for(@user) do |f| %>
     	<%= render 'shared/error_messages' %>
+      <table align="center" width="100%">
+        <tr>
+          <td align="center">
+            <select ID="DropDownList1" runat="server">
+              <option Text="Title">Title</option>
+              <option Text="Mr." Value="1">Mr.</option>
+              <option Text="Ms." Value="2">Ms.</option>
+              <option Text="Dr." Value="3">Dr.</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <%= f.text_field :name,:placeholder => 'Name' %>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">      
+            
+            <%= f.text_field :email, :placeholder => 'Email' %>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            
+            <%= f.password_field :password, :placeholder => 'Password' %>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            
+            <%= f.password_field :password_confirmation, :placeholder => 'Re-Enter Password' %>
+          </td>
+        </tr>
+      </table>
 
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation %>
-
-      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+      <%= f.submit "Sign up", :style => "background-color:#33b5e5;border-radius:15px; display:inline-block; color: white; font-family: Raleway; font-size:15px; padding:14px 30px; text-decoration: none; margin-left: 20%; margin-top: 15px; margin-bottom: 15px; text-align:center;" %>
     <% end %>
-  </div>
-</div>
