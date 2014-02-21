@@ -16,8 +16,8 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 		if @user.save
 			sign_in @user
-			flash[:success] = "Welcome to the Pharma Portal!"
-			redirect_to @user
+			#flash[:success] = "Welcome to the Pharma Portal!"
+			redirect_to '/dashboard'
 		else
 			render 'new'
 		end
