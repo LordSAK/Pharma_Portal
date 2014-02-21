@@ -17,10 +17,12 @@
 
     <header class="navbar navbar-fixed-top navbar-inverse header1">
       <div class="navbar-inner">
-        <div class="container" style="margin-left:15px">
-          
+        <div class="container" style="margin-left:15px;float:left; margin-top:4px;">
+          <% if !current_user.blank? %>
+              <%= link_to "Dashboard", static_pages_dashboard_path, :style => "color:#f9f6f0;" %>
+          <% end %>
           <div style="float:right;color:#FFF;margin:10px 10px 0 0">
-          
+              
             </div>
             
           

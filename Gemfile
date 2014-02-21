@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.0.2'
 gem 'bcrypt-ruby', '3.1.2'
+gem 'event-calendar', :require => 'event_calendar'
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'

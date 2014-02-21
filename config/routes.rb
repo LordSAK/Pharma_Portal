@@ -1,8 +1,10 @@
 PharmaPortal::Application.routes.draw do
+  match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}, via: [:get,:post]
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   #root to: "static_pages#home"
   root to: "users#new"
+  get "static_pages/dashboard"
   match '/signup', to: 'users#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'

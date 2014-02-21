@@ -540,3 +540,15 @@ $grayMediumLight: #eaeaea;
   @extend .control-group;
   @extend .error;
 }
+
+
+.box {border:1px solid lightgray;}
+.box h2 {background:#303030;color:white;padding:10px;font-size:12px;font-weight:bold;}
+.box p {color:#333;padding:10px; font-size: 12px;}
+.box {
+    -moz-border-radius-topright:5px;
+    -moz-border-radius-topleft:5px;
+    -webkit-border-top-right-radius:5px;
+    -webkit-border-top-left-radius:5px;
+}
+
