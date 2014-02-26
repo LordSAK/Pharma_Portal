@@ -11,12 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140221095705) do
+ActiveRecord::Schema.define(version: 20140225093259) do
 
   create_table "events", force: true do |t|
     t.string   "name"
     t.datetime "start_at"
     t.datetime "end_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "spends", force: true do |t|
+    t.integer  "SpendID"
+    t.datetime "Date"
+    t.string   "SpendActivity"
+    t.string   "SpendDetail"
+    t.string   "BusinessPurpose"
+    t.decimal  "Amount"
+    t.string   "RecipentCategory"
+    t.string   "RecipentType"
+    t.string   "RecipentState"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

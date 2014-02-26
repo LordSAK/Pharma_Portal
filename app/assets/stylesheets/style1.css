@@ -552,3 +552,24 @@ $grayMediumLight: #eaeaea;
     -webkit-border-top-left-radius:5px;
 }
 
+.box1 {border:1px solid #545454;background-color:#d3d3d3; font-size: 12px;}
+.box1 h2 {background:#bdbdbd;color:black;padding:8px;font-size:14px;font-weight: bold;
+			border:1px solid #545454;}
+.box1 p {color:#333;padding:10px; font-size: 10px;}
+.box1 {
+    -moz-border-radius-topright:5px;
+    -moz-border-radius-topleft:5px;
+    -webkit-border-top-right-radius:5px;
+    -webkit-border-top-left-radius:5px;
+}
+
+.tablestyle {border:1px solid #545454;background-color:#d3d3d3; font-size: 12px;}
+.tablestyle th {background:#bdbdbd;color:black;padding:8px;font-size:12px;font-weight: bold;
+			border:1px solid #545454;}
+.tablestyle td {color:#333;padding:10px; font-size: 12px;}
+.tablestyle {
+    -moz-border-radius-topright:5px;
+    -moz-border-radius-topleft:5px;
+    -webkit-border-top-right-radius:5px;
+    -webkit-border-top-left-radius:5px;
+}
