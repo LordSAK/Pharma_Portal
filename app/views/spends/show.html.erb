@@ -1,0 +1,95 @@
+<div class="box1">
+	<h2>Spends</h2>
+	<table>
+		<tr>
+			<td>
+				Start Date <input type="text" id="TxtBx_StartDate" style="width:65px">
+			</td>
+			<td>
+				&nbsp;&nbsp;&nbsp;End Date <input type="text" id="TxtBx_EndDate" style="width:65px">
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td>
+				Recipent Category
+				<select>
+					<option value="All">All</option>
+				</select>
+			</td>
+			<td>
+				&nbsp;&nbsp;&nbsp;Recipent Type
+				<select>
+					<option value="All">All</option>
+				</select>
+			</td>
+			<td>
+				&nbsp;&nbsp;&nbsp;Recipent State
+				<select>
+					<option value="All">All</option>
+				</select>
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td>
+				Spend Activity Type
+				<select>
+					<option value="All">All</option>
+					<option value="Call">Call</option>
+					<option value="Advisory Board">Advisory Board</option>
+				</select>
+			</td>
+			<td>
+				&nbsp;&nbsp;&nbsp;Spend Detail Type
+				<select>
+					<option value="All">All</option>
+					<option value="Lunch">Lunch</option>
+					<option value="Travel">Travel</option>
+					<option value="Souvenir">Souvenir</option>
+					<option value="Meal">Meal</option>
+					<option value="Contracted Fee">Contracted Fee</option>
+				</select>
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td>
+				Business Purpose
+				<select>
+					<option value="All">All</option>
+					<option vlaue="Promotion">Promotion</option>
+				</select>
+			</td>
+			<td>
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td>
+				<input type="button" id="submit" value="Filter" style=" width:40px;height:35px;background-color:#181818;border-radius:5px; display:inline-block; color: white; font-size:10px;  text-decoration: none; margin-left: 5%; margin-top: 15px; margin-bottom: 15px; text-align:center;">
+			</td>
+			<td>
+			</td>
+		</tr>
+	</table>
+</div>
+<br/>
+
+<div class="box1">
+	<h2>Spend Description</h2>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Amount: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.Amount %></p>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Spend Activity: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.SpendActivity %></p>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Spend Detail: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.SpendDetail %></p>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Business Purpose: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.BusinessPurpose %></p>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Spend Description: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.spend_description %></p>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Spend Date: </b><p>&nbsp;&nbsp;&nbsp;<% if !@spends.Date.nil? %><%= @spends.Date.to_time.strftime('%b %d,%Y') %><% end %></p>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Payment Date: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.payment_date %></p>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Source System: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.source_system %></p>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Source Company: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.source_company %></p>
+</div>
+

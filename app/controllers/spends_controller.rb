@@ -3,6 +3,7 @@ class SpendsController < ApplicationController
   end
 
   def edit
+    @spends=Spend.find(params[:id])
   end
 
   def index
