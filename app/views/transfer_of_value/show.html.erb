@@ -1,0 +1,134 @@
+<div class="box1">
+	<h2>Spends</h2>
+	<table>
+		<tr>
+			<td>
+				Start Date <input type="text" id="TxtBx_StartDate" style="width:65px">
+			</td>
+			<td>
+				&nbsp;&nbsp;&nbsp;End Date <input type="text" id="TxtBx_EndDate" style="width:65px">
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td>
+				Recipent Category
+				<select>
+					<option value="All">All</option>
+				</select>
+			</td>
+			<td>
+				&nbsp;&nbsp;&nbsp;Recipent Type
+				<select>
+					<option value="All">All</option>
+				</select>
+			</td>
+			<td>
+				&nbsp;&nbsp;&nbsp;Recipent State
+				<select>
+					<option value="All">All</option>
+				</select>
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td>
+				Spend Activity Type
+				<select>
+					<option value="All">All</option>
+					<option value="Call">Call</option>
+					<option value="Advisory Board">Advisory Board</option>
+				</select>
+			</td>
+			<td>
+				&nbsp;&nbsp;&nbsp;Spend Detail Type
+				<select>
+					<option value="All">All</option>
+					<option value="Lunch">Lunch</option>
+					<option value="Travel">Travel</option>
+					<option value="Souvenir">Souvenir</option>
+					<option value="Meal">Meal</option>
+					<option value="Contracted Fee">Contracted Fee</option>
+				</select>
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td>
+				Business Purpose
+				<select>
+					<option value="All">All</option>
+					<option vlaue="Promotion">Promotion</option>
+				</select>
+			</td>
+			<td>
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td>
+				<input type="button" id="submit" value="Filter" style=" width:40px;height:35px;background-color:#181818;border-radius:5px; display:inline-block; color: white; font-size:10px;  text-decoration: none; margin-left: 5%; margin-top: 15px; margin-bottom: 15px; text-align:center;">
+			</td>
+			<td>
+			</td>
+		</tr>
+	</table>
+</div>
+<br/>
+
+<div class="box1">
+	<h2>Recipient's Description</h2>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Recipient Type: </b><p>&nbsp;&nbsp;&nbsp;<%= @Recipients.first.recipientType %></p>
+	<% if @Recipients.first.recipientType == "Physician" %>
+		<% suffix= @Recipients.first.suffix %>
+		<% firstName= @Recipients.first.physicianFirstName %>
+		<% user_name=suffix+ " " + firstName %>
+		<% if !@Recipients.first.physicianMiddleName.blank? %>
+			<% user_name += " "+@Recipients.first.physicianMiddleName %>
+		<% end %>
+		<% if !@Recipients.first.physicianLastName.blank? %>
+			<% user_name += " "+ @Recipients.first.physicianLastName %>
+		<% end %>
+		&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Physician Name: </b><p>&nbsp;&nbsp;&nbsp;<%= user_name %></p>
+	<% else %>
+		&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Hospital Name: </b><p>&nbsp;&nbsp;&nbsp;<%= @Recipients.first.teachingHospitalName %></p>
+	<% end %> 
+	<% address = @Recipients.first.businessAddress %>
+	<% address += " "+ @Recipients.first.city %>
+	<% address += " "+ @Recipients.first.state %>
+	<% address += " "+ @Recipients.first.zip %>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Business Address: </b><p>&nbsp;&nbsp;&nbsp;<%= address %></p>
+</div>
+<br/>
+
+<div class="box1">
+	<h2>Spend Description</h2>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Title: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.paymentName %></p>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Amount: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.totalAmount %></p>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Business Purpose: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.NatureofPayment %></p>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Number of Payments: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.numberofPayment %></p>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Spend Date: </b><p>&nbsp;&nbsp;&nbsp;<% if !@spends.DateofPayment.nil? %><%= @spends.DateofPayment.to_time.strftime('%b %d,%Y') %><% end %></p>
+</div>
+<br/>
+<div class="box1">
+	<h2>Products</h2>
+	<% @Products.each do |p| %>
+	<% if p.nameofDrugorBiological.blank? %>
+		&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Product: </b><p>&nbsp;&nbsp;&nbsp;<%= p.nameofDeviceorMedicalSupply %></p>
+	<% else %>
+		&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Product: </b><p>&nbsp;&nbsp;&nbsp;<%= p.nameofDrugorBiological %></p>
+	<% end %>
+	<% end %>
+</div>
+<br/>
+<div class="box1">
+	<h2>3rd Party Payee</h2>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">3rd Party Indicatror: </b><p>&nbsp;&nbsp;&nbsp;<%= @ThirdParty.first.ThirdPartyPayemntRecipientIndicator %></p>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Name of 3rd Party Entity: </b><p>&nbsp;&nbsp;&nbsp;<%= @ThirdParty.first.NameofThirdParty %></p>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Charity: </b><p>&nbsp;&nbsp;&nbsp;<%= @ThirdParty.first.Charity %></p>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Information: </b><p>&nbsp;&nbsp;&nbsp;<%= @ThirdParty.first.ContextualInformation %></p>
+</div>

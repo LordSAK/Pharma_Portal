@@ -1,11 +1,15 @@
 PharmaPortal::Application.routes.draw do
+  #get "transfer_of_value/edit"
+  #match "/transfer_of_value", to: 'transfer_of_value#show',via: 'get'
+  #get "transfer_of_value/new"
+ # get "transfer_of_value/show"
   #get "spends/new"
   #get "spends/edit"
   #get "spends/index"
   match '/calendar(/:year(/:month))' => 'calendar#index', :as => :calendar, :constraints => {:year => /\d{4}/, :month => /\d{1,2}/}, via: [:get,:post]
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :spends
+  resources :transfer_of_value
   #root to: "static_pages#home"
   root to: "users#new"
   match '/dashboard',to: "static_pages#dashboard", via: 'get'

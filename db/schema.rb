@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227074113) do
+ActiveRecord::Schema.define(version: 20140307110052) do
+
+  create_table "associated_products", force: true do |t|
+    t.string   "productIndicator"
+    t.string   "nameofDrugorBiological"
+    t.string   "NDCofDrugorBiological"
+    t.string   "nameofDeviceorMedicalSupply"
+    t.integer  "AmountID"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "events", force: true do |t|
     t.string   "name"
@@ -21,22 +31,56 @@ ActiveRecord::Schema.define(version: 20140227074113) do
     t.datetime "updated_at"
   end
 
-  create_table "spends", force: true do |t|
-    t.integer  "SpendID"
-    t.datetime "Date"
-    t.string   "SpendActivity"
-    t.string   "SpendDetail"
-    t.string   "BusinessPurpose"
-    t.decimal  "Amount"
-    t.string   "RecipentCategory"
-    t.string   "RecipentType"
-    t.string   "RecipentState"
+  create_table "general_records", force: true do |t|
+    t.string   "PhysicianOwnershipIndicator"
+    t.string   "ThirdPartyPayemntRecipientIndicator"
+    t.string   "NameofThirdParty"
+    t.string   "Charity"
+    t.string   "ThirdPartyEqualsCoveredRecipientIndicator"
+    t.string   "ContextualInformation"
+    t.string   "DelayinPublishResearchIndicator"
+    t.integer  "AmountID"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "spend_description"
-    t.datetime "payment_date"
-    t.string   "source_system"
-    t.string   "source_company"
+  end
+
+  create_table "recipients", force: true do |t|
+    t.string   "recipientType"
+    t.string   "teachingHospitalName"
+    t.string   "teachingHospitalTaxIDNumber"
+    t.string   "physicianFirstName"
+    t.string   "physicianMiddleName"
+    t.string   "physicianLastName"
+    t.string   "suffix"
+    t.string   "businessAddress"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "country"
+    t.string   "province"
+    t.string   "postalCode"
+    t.string   "email"
+    t.string   "physicianPrimaryType"
+    t.string   "physicianNPI"
+    t.string   "physicianSpecialty"
+    t.string   "physicianLicenseState"
+    t.string   "physicianLicenseNumber"
+    t.integer  "AmountID"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transfer_of_values", force: true do |t|
+    t.string   "paymentName"
+    t.integer  "totalAmount"
+    t.datetime "DateofPayment"
+    t.integer  "numberofPayment"
+    t.string   "NatureofPayment"
+    t.string   "City"
+    t.string   "State"
+    t.string   "Country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

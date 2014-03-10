@@ -3,14 +3,14 @@ class SpendsController < ApplicationController
   end
 
   def edit
-    @spends=Spend.find(params[:id])
+    @spends=TransferOfValue.find(params[:id])
   end
 
   def index
-  	@spends=Spend.all
+  	@spend=TransferOfValue.all
   end
 
   def show
-  	@spends=Spend.find(params[:id])
+  	@spends=TransferOfValue.find(params[:id])
   end
 end
