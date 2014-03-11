@@ -12,8 +12,8 @@ class TransferOfValueController < ApplicationController
 
   def show
   	@spends=TransferOfValue.find(params[:id])
-  	@Recipients=Recipient.where('AmountID = ?',params[:id])
-  	@Products= AssociatedProduct.where('AmountID = ?',params[:id])
-  	@ThirdParty=GeneralRecord.where('AmountID = ?', params[:id])
+  	@Recipients=Recipient.where('"AmountID" = ?',params[:id])
+  	@Products= AssociatedProduct.where('"AmountID" = ?',params[:id])
+  	@ThirdParty=GeneralRecord.where('"AmountID" = ?', params[:id])
   end
 end
