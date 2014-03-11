@@ -1,0 +1,589 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+ */
+
+ @font-face{ font-family: "Segoe UI Light"; src: url('segoeuilight.ttf'); }
+*{
+    padding: 0;
+    font-weight: 100;
+    font-family: Arial;
+	margin-left: 0;
+	margin-right: 0;
+	margin-top: 0;
+}
+
+body {
+    background-color: #F9F6F0;
+}
+.header{
+    width: auto;
+    height: 70px;
+    background-color: #000000;
+    text-align:center;
+}
+.header1{
+    width: auto;
+    height: 30px;
+    background-color: #181818;
+    text-align:center;
+}
+img.headerimg{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;   
+}
+.content{
+    width: 65%;
+    margin-left: 17%;
+    height: auto;
+    margin-top: 20px;
+    background-color: white;
+    padding: 10px;
+    font-family: Arial;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    border-color: lightgrey;
+    border-style:solid;
+    border-width: 0.1px
+}
+
+img.network{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+h1.title{
+    font-size: 34px;
+    font-weight: 400;
+    margin: 10px;
+    text-align: center;
+}
+h2.subtitle{
+    font-size: 20px;
+    font-weight: 100;
+    margin: 10px;
+    text-align: center;
+}
+p.details{
+    text-align: center;
+    margin-left: 10%;
+    width: 80%;
+    font-size: 24px;
+    font-weight: 200;
+}
+#signupbutton{
+	background-color:#33b5e5;
+	border-radius:15px;
+	display:inline-block;
+	color: white;
+	font-family: Raleway;
+	font-size:21px;
+	font-weight:bold;
+	padding:14px 30px;
+	text-decoration: none;
+    margin-left: 20%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+#loginbutton {
+	background-color:#33b5e5;
+	border-radius:15px;
+	display:inline-block;
+	color: white;
+	font-family: Raleway;
+	font-size:24px;
+	font-weight:bold;
+	padding:14px 30px;
+	text-decoration: none;
+    margin-left: 20%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+a{
+    text-decoration: inherit;
+    color: inherit;
+}
+p.step{
+    text-align: center;
+    margin-left: 5%;
+    width: 90%;
+    font-size: 36px;
+    margin-top: 15px;
+    color: #33b5e5;
+}
+p.process{
+    font-size: 24px;
+    margin-left: 10%;
+    width: 80%;
+    text-align: center;
+}
+
+.member{
+    width: 80%;
+    height: 110px;
+    overflow: auto;
+    margin-left: 10%;
+    margin-top: 10px;
+    background-color: #CCDBE0;
+}
+img.photo{
+	margin-top: 10px;
+	margin-left: 10px;
+	height: 90px;
+	width: 90px;
+	margin-bottom: 10px;
+}
+
+p.description{
+    color: #303030;
+    font-size: 20px;
+    margin-left: 110px;
+    margin-top: -90px;
+    margin-bottom: 10px;
+    width: auto;
+}
+
+p.question{
+    font-size: 26px;
+    margin: 15px;
+    width: 80%;
+    margin-left: 10%;
+}
+p.answer{
+    margin: 10px;
+    font-size: 18px;
+    width: 80%;
+    margin-left: 10%;
+}
+
+p.emailme{
+    color: #33b5e5;
+    font-size: 20px;
+    margin-left: 10%;
+    width: 80%;
+}
+
+.footer{
+   position:absolute;
+   bottom:0;
+   left: 0;
+   width:100%;
+   height:60px;   /* Height of the footer */
+   background-color:#6cf;    
+}
+nav
+{
+	float: right;
+	/*height: 44px;*/
+	width: 100%;	
+	color: #FFF;
+}
+#menu_container
+{
+	width: 100%;
+	margin: 0 auto 0 auto;
+}
+
+html body ul.sf-menu ul, html body ul.sf-menu ul li
+{
+	width: 200px; /* 150px*/
+}
+
+html body ul.sf-menu ul ul
+{
+	margin: 0 0 0 150px;
+}
+
+/* Framework for proper showing/hiding/positioning */
+ul.sf-menu, ul.sf-menu *
+{
+	margin: 0;
+	padding: 0;
+}
+
+ul.sf-menu
+{
+	display: block;
+	position: relative;
+	top: -35px;
+	left: 80px;
+}
+
+ul.sf-menu li
+{
+	display: block;
+	list-style: none;
+	float: left;
+	position: relative;
+	top: 0px;
+	left: -335px;
+}
+
+ul.sf-menu li:hover
+{
+	visibility: inherit; /* fixes IE7 'sticky bug' */
+}
+
+ul.sf-menu a
+{
+	display: block;
+	position: relative;
+	top: 0px;
+	left: 330px;
+}
+
+ul.sf-menu ul
+{
+	position: absolute;
+	left: 0;
+	width: 150px;
+	top: auto;
+	left: -999999px;
+}
+
+ul.sf-menu ul a
+{
+	zoom: 1; /* IE6/7 fix */
+}
+
+ul.sf-menu ul li
+{
+	float: left; /* Must always be floated otherwise there will be a rogue 1px margin-bottom in IE6/7 */
+	width: 150px;
+}
+
+ul.sf-menu ul ul
+{
+	top: 0;
+	margin: 0 0 0 150px;
+}
+
+ul.sf-menu li:hover ul, ul.sf-menu li:focus ul, ul.sf-menu li.sf-hover ul, ul.sf-menu ul li:hover ul, ul.sf-menu ul li:focus ul, ul.sf-menu ul li.sf-hover ul, ul.sf-menu ul ul li:hover ul, ul.sf-menu ul ul li:focus ul, ul.sf-menu ul ul li.sf-hover ul, ul.sf-menu ul ul ul li:hover ul, ul.sf-menu ul ul ul li:focus ul, ul.sf-menu ul ul ul li.sf-hover ul
+{
+	left: auto;
+}
+
+ul.sf-menu li:hover ul ul, ul.sf-menu li:focus ul ul, ul.sf-menu li.sf-hover ul ul, ul.sf-menu ul li:hover ul ul, ul.sf-menu ul li:focus ul ul, ul.sf-menu ul li.sf-hover ul ul, ul.sf-menu ul ul li:hover ul ul, ul.sf-menu ul ul li:focus ul ul, ul.sf-menu ul ul li.sf-hover ul ul, ul.sf-menu ul ul ul li:hover ul ul, ul.sf-menu ul ul ul li:focus ul ul, ul.sf-menu ul ul ul li.sf-hover ul ul
+{
+	left: -999999px;
+}
+
+/* Theming the menu */
+ul#nav
+{
+	float: right;
+	top: -41px;
+	left: 250px;/* 27px */
+	width: auto;/* 773px */
+}
+
+ul#nav ul
+{
+	background: #0DBBD5;
+	margin-top: 0px;
+	padding-bottom: 0px;
+}
+
+ul#nav li a
+{
+	padding: 7px 20px 6px 20px;
+	font: 125% Century Gothic;
+	text-shadow: 1px 1px #000;
+	text-decoration: none;
+	color: #e5e5e5;
+	margin-right: 2px;
+}
+
+ul#nav li a:hover, ul#nav li a:focus
+{
+	color: #3dbaff;
+	text-shadow: none;
+}
+
+ul#nav ul li a:hover, ul#nav ul li a:focus
+{
+	color: #222;
+	text-shadow: none;
+}
+.button{
+	background-color:#33b5e5;
+	border-radius:15px;
+	display:inline-block;
+	color: white;
+	font-family: Raleway;
+	font-size:25px;
+	font-weight:bold;
+	padding:14px 30px;
+	text-decoration: none;
+    margin-left: 20%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    text-align:center;
+}
+.button1{
+	background-color:#33b5e5;
+	border-radius:15px;
+	display:inline-block;
+	color: white;
+	font-family: Raleway;
+	font-size:25px;
+	font-weight:bold;
+	padding:14px 30px;
+	text-decoration: none;
+    margin-left: 1%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.hyper
+{
+color:blue;
+	}
+	
+	.buttonblck{
+	background-color:#303030;
+	border-radius:15px;
+	display:inline-block;
+	color: white;
+	font-family: Raleway;
+	font-size:12px;
+	font-weight:bold;
+	padding:14px 30px;
+	text-decoration: none;
+    margin-left: 20%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.buttonsmall
+{
+	background-color:#303030;
+	text-align:center;
+	border-radius:15px;
+	-webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+	display:inline-block;
+	color: white;
+	font-family: Raleway;
+	font-size:12px;
+	font-weight:bold;
+	padding:14px 30px; /* padding:14px 30px; */
+	text-decoration: none;
+    margin-left: 18%;
+    margin-top: 18px;
+    margin-bottom: 12px;
+	}
+		.example_menu {
+	    font-size: 90%;
+	    list-style: none;
+	    margin: 0;
+	    padding: 0;
+	    vertical-align: top;
+	    width: 136px;
+	}
+	.expand_all,
+	.collapse_all {
+	        cursor: pointer;
+	}
+	.example_menu ul {
+	    display: none;
+	    list-style: none;
+	    margin: 0;
+	    padding: 0;
+	}
+	#menu1 li, #menu2 li, #menu3 li, #menu4 li, #menu5 li, .example_menu li {
+	    background-image: none;
+	    margin: 0;
+	    padding: 0;
+	}
+	.example_menu ul ul {
+	    display: block;
+	}
+	.example_menu ul ul li a {
+	    padding-left: 20px;
+	    width: 109px;
+	}
+	.example_menu a {
+	    color: #000;
+	    cursor: pointer;
+	    display: block;
+	    font-weight: bold;
+	    margin-left: 0;
+	    padding: 2px 2px 2px 17px;
+	    width: 112px;
+	}
+	.example_menu a.expanded {
+	    background: #bbb url('collapse.gif') no-repeat 3px 50%;
+	}
+	.example_menu a.collapsed {
+	    background: #bbb url('expand.gif') no-repeat 3px 50%;
+}
+	.example_menu a:hover {
+	    text-decoration: none;
+	}
+	.example_menu ul a {
+	    background: #e8e8e8;
+	    border-top: 2px solid #fff;
+	    color: #000;
+	    display: block;
+	    font-weight: normal;
+	    padding: 2px 2px 2px 10px;
+	    width: 119px;
+	}
+	.example_menu ul a:link {
+	    font-weight: normal;
+	}
+	.example_menu ul a:hover {
+	    background : #f5f5f5;
+	    text-decoration: underline;
+	}
+	.example_menu li.active a {
+	    background: #fff;
+	}
+	.example_menu li.active li a {
+	    background: #e8e8e8;
+	}
+	#menu1 li.footer, #menu2 li.footer, #menu3 li.footer, #menu4 li.footer, #menu5 li.footer, .example_menu .footer {
+	    background: transparent url('footer.jpg') no-repeat 0 0;
+	    border-top: 2px solid #fff;
+	    height: 9px;
+	    line-height: 15px;
+	    margin: 0 0 10px 0;
+	    width: 131px;
+	}
+	.example_menu .footer span {
+	    display: none;
+	}
+	.hypermenu{
+	background-color:#CCDBE0;
+	border-radius:12px;
+	display:inline-block;
+	color: black;
+	font-family: Raleway;
+	font-size:15px;
+	font-weight:bold;
+	padding:14px 30px;
+	text-decoration: none;
+    margin-left: 20%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+$grayMediumLight: #eaeaea;
+
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
+}
+
+.buttonhome
+{
+ height: 100px;
+ width: 200px;
+ font-family: Arial;
+    font-size: large;
+ background-color: transparent;
+ border-style: none;
+ color: white;
+}
+
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+#logo:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#error_explanation {
+  color: #f00;
+  ul {
+    list-style: none;
+    margin: 0 0 18px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .control-group;
+  @extend .error;
+}
+
+
+.box {border:1px solid lightgray;}
+.box h2 {background:#303030;color:white;padding:10px;font-size:12px;font-weight:bold;}
+.box p {color:#333;padding:10px; font-size: 12px;}
+.box {
+    -moz-border-radius-topright:5px;
+    -moz-border-radius-topleft:5px;
+    -webkit-border-top-right-radius:5px;
+    -webkit-border-top-left-radius:5px;
+}
+
+.box1 {border:1px solid #545454;background-color:#d3d3d3; font-size: 12px;}
+.box1 h2 {background:#bdbdbd;color:black;padding:8px;font-size:14px;font-weight: bold;
+			border:1px solid #545454;}
+.box1 p {color:#333;padding:5px; font-size: 12px;}
+.box1 {
+    -moz-border-radius-topright:5px;
+    -moz-border-radius-topleft:5px;
+    -webkit-border-top-right-radius:5px;
+    -webkit-border-top-left-radius:5px;
+}
+
+.tablestyle {border:1px solid #545454;background-color:#d3d3d3; font-size: 12px;}
+.tablestyle th {background:#bdbdbd;color:black;padding:8px;font-size:12px;font-weight: bold;
+			border:1px solid #545454;}
+.tablestyle td {color:#333;padding:10px; font-size: 12px;}
+.tablestyle {
+    -moz-border-radius-topright:5px;
+    -moz-border-radius-topleft:5px;
+    -webkit-border-top-right-radius:5px;
+    -webkit-border-top-left-radius:5px;
+}
