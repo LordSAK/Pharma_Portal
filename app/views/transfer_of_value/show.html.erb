@@ -80,8 +80,15 @@
 </div>
 <br/>
 
-<div class="box1">
-	<h2>Recipient's Description</h2>
+<div class="box1" id="recipient">
+	<h2>
+		Recipient's Description
+		<span style="float:right">
+			<a id="Open_Recipient" style="color:blue;cursor:pointer;">
+				Edit
+			</a>
+		</span>
+	</h2>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Recipient Type: </b><p>&nbsp;&nbsp;&nbsp;<%= @Recipients.first.recipientType %></p>
 	<% if @Recipients.first.recipientType == "Physician" %>
 		<% suffix= @Recipients.first.suffix %>
@@ -102,33 +109,583 @@
 	<% address += " "+ @Recipients.first.state %>
 	<% address += " "+ @Recipients.first.zip %>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Business Address: </b><p>&nbsp;&nbsp;&nbsp;<%= address %></p>
+
+	<script type="text/javascript">
+	$(function(){
+		$("#recipient1").submit(function(){
+			var dataSet = $(this).serialize();
+			$.ajax({
+				type: "POST",
+				url: $(this).attr("action"),
+				data: dataSet,
+				success: function(){
+					alert("Sent!");
+				},
+				error: function(){
+					alert("Something went wrong!");
+		        }
+		    });
+		    return false;
+		});
+	})
+	var el=document.getElementById("Open_Recipient");
+	el.onclick = show_dialog;
+	function show_dialog() {
+		$( "#dialog" ).dialog();
+	}
+
+	$(document).ready(function(){
+	var Privileges = jQuery('#RecipientType');
+	var select = this.value;
+	if(Privileges.val() == 'Physician')
+	{
+	    $('#physician').show();
+    	$('#hospital').hide();
+	}
+	else
+	{
+		$('#physician').hide(); // hide div if value is not "custom"
+    	$('#hospital').show();
+	}
+	Privileges.change(function () {
+		if ($(this).val() == 'Physician') {
+	        $('#physician').show();
+    	    $('#hospital').hide();
+	    }
+    	else {
+	    	$('#physician').hide(); // hide div if value is not "custom"
+    		$('#hospital').show();
+    	}
+	});
+});
+	</script>
+	<div id="dialog" title="Recipeint Information" style="font-size:12px;" hidden >
+	<%= form_tag({controller: "transfer_of_value",:action => :recipients, :remote => true}) do |f| %>
+	<table>
+		<tr>
+			<td>
+				Recipient Type:
+			</td>
+			<td>
+				<select name="RecipientType" id="RecipientType"  >
+					<% if  @Recipients.first.recipientType== "Physician" %>
+						<option value="Physician" selected >Physician</option>
+						<option value="Hospital" >Hospital</option>
+					<% else %>
+						<option value="Physician" >Physician</option>
+						<option value="Hospital" selected >Hospital</option>
+					<% end %>
+				</select>
+
+			</td>
+		</tr>
+	</table>
+		<table id="physician">
+			<tr>
+				<td>
+					Suffix: 
+				</td>
+				<td>
+					<input type="text" name="Suffix" id="Suffix" value="<%= @Recipients.first.suffix %>" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					First Name: 
+				</td>
+				<td>
+					<input type="text" name="FirstName" id="FirstName" value="<%= @Recipients.first.physicianFirstName %>" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Middle Name:
+				</td>
+				<td>
+					<input type="text" name="MiddleName" id="MiddleName" value="<%= @Recipients.first.physicianMiddleName %>" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Last Name: 
+				</td>
+				<td>
+					<input type="text" name="LastName" id="LastName" value="<%= @Recipients.first.physicianLastName %>" />
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					Business Address: 
+				</td>
+				<td>
+					<input type="text" name="address" id="address" value="<%= @Recipients.first.businessAddress %>" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					City: 
+				</td>
+				<td>
+					<input type="text" name="city" id="city" value="<%= @Recipients.first.city %>" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					State: 
+				</td>
+				<td>
+					<input type="text" name="State" id="State" value="<%= @Recipients.first.state %>" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Zip: 
+				</td>
+				<td>
+					<input type="text" name="zip" id="zip" value="<%= @Recipients.first.zip %>" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="hidden" id="ids" name="ids" value="<%= @Recipients.first.id %>" />
+					<input type="hidden" id="id" name="id" value="<%= @spends.id %>" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<%=  submit_tag 'update' %>
+				</td>
+			</tr>
+		</table>
+		<table id="hospital">
+			<tr>
+				
+			<tr>
+				<td>
+					Hospital: 
+				</td>
+				<td>
+					<input type="text" name="Hospital" id="Hospital" value="<%= @Recipients.first.teachingHospitalName %>" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Business Address: 
+				</td>
+				<td>
+					<input type="text" name="address" id="address" value="<%= @Recipients.first.businessAddress %>" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					City: 
+				</td>
+				<td>
+					<input type="text" name="city" id="city" value="<%= @Recipients.first.city %>" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					State: 
+				</td>
+				<td>
+					<input type="text" name="State" id="State" value="<%= @Recipients.first.state %>" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Zip: 
+				</td>
+				<td>
+					<input type="text" name="zip" id="zip" value="<%= @Recipients.first.zip %>" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="hidden" id="ids" name="ids" value="<%= @Recipients.first.id %>" />
+					<input type="hidden" id="id" name="id" value="<%= @spends.id %>" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<%=  submit_tag 'update' %>
+				</td>
+			</tr>
+		</table>
+	<% end %>
+	</div>
+
 </div>
+
 <br/>
 
 <div class="box1">
-	<h2>Spend Description</h2>
+	<h2>
+		Spend Description
+		<span style="float:right">
+			<a  id="Open_Spends" style="color:blue;cursor:pointer;">
+				Edit
+			</a>
+		</span>
+	</h2>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Title: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.paymentName %></p>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Amount: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.totalAmount %></p>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Business Purpose: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.NatureofPayment %></p>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Number of Payments: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.numberofPayment %></p>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Spend Date: </b><p>&nbsp;&nbsp;&nbsp;<% if !@spends.DateofPayment.nil? %><%= @spends.DateofPayment.to_time.strftime('%b %d,%Y') %><% end %></p>
+
+	<script type="text/javascript">
+	$(function(){
+		$("#recipient1").submit(function(){
+			var dataSet = $(this).serialize();
+			$.ajax({
+				type: "POST",
+				url: $(this).attr("action"),
+				data: dataSet,
+				success: function(){
+					alert("Sent!");
+				},
+				error: function(){
+					alert("Something went wrong!");
+		        }
+		    });
+		    return false;
+		});
+	})
+	var el=document.getElementById("Open_Spends");
+	el.onclick = show_dialog1;
+	function show_dialog1() {
+		$( "#dialog1" ).dialog();
+	}
+
+
+	</script>
+	<div id="dialog1" title="Spends Information" style="font-size:12px;" hidden >
+		<%= form_tag({controller: "transfer_of_value",:action => :spends, :remote => true}) do |f| %>
+			<table>
+				<tr>
+					<td>
+						Title:
+					</td>
+					<td>
+						<input type="text" name="title" id="title" value="<%= @spends.paymentName %>" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Amount: 
+					</td>
+					<td>
+						<input type="text" name="amount" id="amount" value="<%= @spends.totalAmount %>" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Business Purpose: 
+					</td>
+					<td>
+						<input type="text" name="purpose" id="purpose" value="<%= @spends.NatureofPayment %>" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Number of Payments:
+					</td>
+					<td>
+						<input type="text" name="num_of_pay" id="num_of_pay" value="<%= @spends.numberofPayment %>" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Spend Date: 
+					</td>
+					<td>
+						<% if !@spends.DateofPayment.nil? %>
+							<input type="text" name="spend_date" id="spend_date" value="<%= @spends.DateofPayment.to_time.strftime('%b %d,%Y') %>" />
+						<% else %>
+							<input type="text" name="spend_date" id="spend_date" value="" />
+						<% end %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="hidden" id="id" name="id" value="<%= @spends.id %>" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<%=  submit_tag 'update' %>
+					</td>
+				</tr>
+			</table>
+		<% end %>
+	</div>
 </div>
+
+
 <br/>
+
 <div class="box1">
-	<h2>Products</h2>
-	<% @Products.each do |p| %>
+	<h2>
+		Products
+		<!--<span style="float:right">
+			<a id="Open_Products" style="color:blue;cursor:pointer">
+				Edit
+			</a>
+		</span>-->
+	</h2>
+	<% @Products.each_with_index do |p| %>
 	<% if p.nameofDrugorBiological.blank? %>
 		&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Product: </b><p>&nbsp;&nbsp;&nbsp;<%= p.nameofDeviceorMedicalSupply %></p>
 	<% else %>
 		&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Product: </b><p>&nbsp;&nbsp;&nbsp;<%= p.nameofDrugorBiological %></p>
 	<% end %>
 	<% end %>
+	<script type="text/javascript">
+		$(function(){
+			$("#recipient1").submit(function(){
+				var dataSet = $(this).serialize;
+				$.ajax({
+					type: "POST",
+					url: $(this).attr("action"),
+					data: dataSet,
+					success:function(){
+						alert("Sent!");
+					},
+					error: function(){
+						alert("Something went wrong!");
+					}
+				});
+				return false;
+			});
+
+		})
+		var el=document.getElementById("Open_Products");
+		el.onclick = show_dialog3;
+		function show_dialog3(){
+			$("#dialog3").dialog();
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+		$(document).ready(function() {
+		    $("#AddSch").click(function() {
+		    	
+		    	var rownum=$("#ControlsProd > tbody > tr").length;
+		        if (rownum == 0)
+		        {
+		        	updated_row_num=0;
+		        }
+		        else 
+		        {
+		        	updated_row_num=rownum/2;
+		        }
+                var field = $("#field").val();
+                
+                var newRow1 = "<tr><td> <input type='button' class='btn_rmvsch' value='Remove'/></td></tr>";
+
+
+                var input1 = "<input name='product["+ updated_row_num +"]' id='field' type='text' />"
+                var newRow = "<tr><td>" + input1 + "</td></tr>";
+                $('#ControlsProd').append(newRow);
+                $('#ControlsProd').append(newRow1);
+
+            });
+            $('#ControlsProd').on('click', '.btn_rmvsch', function() {
+                var index = $(this).closest('tr').index() + 2
+                alert(index);
+                $('#ControlsProd tr:nth-child(n+' + (index - 2) + ')').remove();
+                return false;
+            });
+            
+        })
+	</script>
+	<div id="dialog3" title="Spends Information" style="font-size:12px;" hidden >
+		<%= form_tag({controller: "transfer_of_value",:action => :product, :remote => true}) do |f| %>
+			
+
+			<table>
+				<% @Products.each_with_index do |p,i| %>
+					<% if p.nameofDrugorBiological.blank? %>
+					<tr>
+						<td>
+							<input type="radio" id="category" name="category[<% i %>]" 
+                    value="Drug or Biological" />Drug or Biological
+                		</td>
+                		<td>
+                    		<input type="radio" id="category" name="category[<% i %>]" 
+                    value="Device or Mdeical Supply" checked />Device or Mdeical Supply
+						</td>
+					</tr>
+						<tr>
+							<td>
+								Product:
+							</td>
+							<td>
+								<input type="text" name="nameofDeviceorMedicalSupply" value="<%= p.nameofDeviceorMedicalSupply %>" />
+							</td>
+						</tr>
+					<% else %>
+						<tr>
+							<td>
+								<input type="radio" id="category" name="category[<% i %>]" 
+                    value="Drug or Biological" checked />Drug or Biological
+                    		</td>
+                    		<td>
+                    			<input type="radio" id="category" name="category[<% i %>]" 
+                    value="Device or Mdeical Supply"  />Device or Mdeical Supply
+							</td>
+						</tr>
+						<tr>
+							<td>
+								Product: 
+							</td>
+							<td>
+								<input tye="text" name="nameofDrugorBiological" value="<%= p.nameofDrugorBiological %>" />
+							</td>
+						</tr>
+					<% end %>
+				<% end %>
+				<tr>
+					<td>
+						<table id="ControlsProd">
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="button" name="AddSch" id="AddSch" Value="Add" />
+						<input type="hidden" id="id" name="id" value="<%= @spends.id %>" />
+
+					</td>
+
+				</tr>
+				<tr>
+					<td>
+						<%=  submit_tag 'update' %>
+					</td>
+				</tr>
+			</table>
+		<% end %>
+	</div>
+	
 </div>
 <br/>
 <div class="box1">
-	<h2>3rd Party Payee</h2>
+	<h2>
+		3rd Party Payee
+		<span style="float:right">
+			<a id="Open_thirdParty" style="color:blue;cursor:pointer;">
+				Edit
+			</a>
+		</span>
+	</h2>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">3rd Party Indicatror: </b><p>&nbsp;&nbsp;&nbsp;<%= @ThirdParty.first.ThirdPartyPayemntRecipientIndicator %></p>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Name of 3rd Party Entity: </b><p>&nbsp;&nbsp;&nbsp;<%= @ThirdParty.first.NameofThirdParty %></p>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Charity: </b><p>&nbsp;&nbsp;&nbsp;<%= @ThirdParty.first.Charity %></p>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Information: </b><p>&nbsp;&nbsp;&nbsp;<%= @ThirdParty.first.ContextualInformation %></p>
+<script type="text/javascript">
+	$(function(){
+		$("#recipient1").submit(function(){
+			var dataSet = $(this).serialize();
+			$.ajax({
+				type: "POST",
+				url: $(this).attr("action"),
+				data: dataSet,
+				success: function(){
+					alert("Sent!");
+				},
+				error: function(){
+					alert("Something went wrong!");
+		        }
+		    });
+		    return false;
+		});
+	})
+	var el=document.getElementById("Open_thirdParty");
+	el.onclick = show_dialog2;
+	function show_dialog2() {
+		$( "#dialog2" ).dialog();
+	}
+
+
+	</script>
+	<div id="dialog2" title="Spends Information" style="font-size:12px;" hidden >
+		<%= form_tag({controller: "transfer_of_value",:action => :party, :remote => true}) do |f| %>
+			<table>
+				<tr>
+					<td>
+						3rd Party Indicatror: 
+					</td>
+					<td>
+						<select name="Party" id="Party"  >
+					<% if @ThirdParty.first.ThirdPartyPayemntRecipientIndicator== "Entity" %>
+						<option value="Entity" selected >Entity</option>
+						<option value="Individual" >Individual</option>
+						<option value="No Third Party">No Third Party</option>
+					<% elsif @ThirdParty.first.ThirdPartyPayemntRecipientIndicator == "Individual" %>
+						<option value="Entity">Entity</option>
+						<option value="Individual" selected>Individual</option>
+						<option value="No Third Party">No Third Party</option>
+					<% else %>
+						<option value="Entity">Entity</option>
+						<option value="Individual" >Individual</option>
+						<option value="No Third Party" selected>No Third Party</option>
+					<% end %>
+				</select>
+
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Name of 3rd Party Entity: 
+					</td>
+					<td>
+						<input type="text" name="name_of_party" id="name_of_party" value="<%= @ThirdParty.first.NameofThirdParty %>" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+   						Charity: 
+					</td>
+					<td>
+						<input type="text" name="charity" id="charity" value="<%= @ThirdParty.first.Charity %>" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Information: 
+					</td>
+					<td>
+						<input type="text" name="info" id="info" value="<%= @ThirdParty.first.ContextualInformation %>" />
+					</td>
+				</tr>
+				
+				<tr>
+					<td>
+						<input type="hidden" id="id" name="id" value="<%= @spends.id %>" />
+						<input type="hidden" id="ids" name="ids" value="<%= @ThirdParty.first.id %>" />
+					</td>
+
+				</tr>
+				<tr>
+					<td>
+						<%=  submit_tag 'update' %>
+					</td>
+				</tr>
+			</table>
+		<% end %>
+	</div>
 </div>
+
+

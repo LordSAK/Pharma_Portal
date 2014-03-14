@@ -5,6 +5,7 @@
 	 <title><%= full_title(yield(:title)) %></title>
   <%= stylesheet_link_tag    "application", media: "all"%>
   <%= javascript_include_tag "application" %>
+  <script src="https://code.google.com/p/jquery-purr/"></script>
   
   <%= stylesheet_link_tag "style1" %>
   <%= csrf_meta_tags %>
@@ -12,7 +13,10 @@
   <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
   <script src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
-
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+  
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
 
 
   <%= render 'layouts/shim' %>
