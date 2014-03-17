@@ -58,14 +58,42 @@ class TransferOfValueController < ApplicationController
 
     def product
         AssociatedProduct.delete_all(:AmountID => params[:id])
-        params[:category].each do |keycateg, category,nameofDeviceorMedicalSupply,nameofDrugorBiological|
-            if category == "Drug or Biological"
-                @prod = AssociatedProduct.new(:AmountID => params[:id], :nameofDrugorBiological => nameofDrugorBiological  )
-               # @prod.save
-            else
-                @prod = AssociatedProduct.new(:AmountID => params[:id], :nameofDeviceorMedicalSupply => nameofDeviceorMedicalSupply)
+        params[:name].each_with_index do |(key,name),i|
+            params[:category].each_with_index do |(key,category),j|
+                if i == j
+                    print "#{name}"
+                    puts ","
+                    puts category
+
+                    if category == "Drug or Biological"
+                         @prod = AssociatedProduct.new(:AmountID => params[:id], :nameofDrugorBiological => name )
+                         @prod.save
+                    else
+                         @prod = AssociatedProduct.new(:AmountID => params[:id], :nameofDeviceorMedicalSupply => name)
+                         @prod.save
+                    end
+                end
             end
         end
+
+        params[:product].each_with_index do |(key,name1),k|
+            params[:category1].each_with_index do |(key,category1),l|
+                if k == l
+                    print "#{name1}"
+                    puts ","
+                    puts category1
+
+                    if category1 == "Drug or Biological"
+                         @prod = AssociatedProduct.new(:AmountID => params[:id], :nameofDrugorBiological => name1 )
+                         @prod.save
+                    else
+                         @prod = AssociatedProduct.new(:AmountID => params[:id], :nameofDeviceorMedicalSupply => name1)
+                         @prod.save
+                    end
+                end
+            end
+        end
+
         
         #if !params[:parametersSch].blank?
             
