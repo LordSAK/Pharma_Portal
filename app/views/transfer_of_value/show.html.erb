@@ -482,7 +482,7 @@
 		    $("#AddSch").click(function() {
 		    	
 		    	var rownum=$("#ControlsProd > tbody > tr").length;
-		    	alert(rownum);
+		    	//alert(rownum);
 		        if (rownum == 0)
 		        {
 		        	updated_row_num=0;
@@ -508,7 +508,7 @@
             });
             $('#ControlsProd').on('click', '.btn_rmvsch', function() {
                 var index = $(this).closest('tr').index() + 2
-                alert(index);
+                //alert(index);
                 $('#ControlsProd tr:nth-child(n+' + (index - 3) + ')').remove();
                 return false;
             });
