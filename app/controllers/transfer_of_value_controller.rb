@@ -1,8 +1,7 @@
 class TransferOfValueController < ApplicationController
     respond_to :html, :json
 
-    def new
-        
+    def new       
     end
 
     def create
