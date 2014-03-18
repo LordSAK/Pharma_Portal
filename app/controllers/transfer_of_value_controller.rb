@@ -1,9 +1,60 @@
 class TransferOfValueController < ApplicationController
-
-
     respond_to :html, :json
+
     def new
         
+    end
+
+    def create
+         @spen=TransferOfValue.new(:paymentName => params[:title],:totalAmount => params[:amount] ,:NatureofPayment => params[:purpose], :numberofPayment => params[:num_of_pay],:DateofPayment => params[:spend_date])
+         @spen.save
+         @spend_id=TransferOfValue.last.id
+
+         if params[:RecipientType] == "Physician"
+            @rec=Recipient.new(:recipientType => params[:RecipientType],:physicianFirstName => params[:FirstName],:physicianMiddleName => params[:MiddleName],:physicianLastName =>params[:LastName],:suffix => params[:Suffix],:businessAddress => params[:address],:city =>params[:city],:state => params[:State],:zip => params[:zip], :AmountID => @spend_id)
+            @rec.save
+        else
+            @rec=Recipient.new(:recipientType => params[:RecipientType],:teachingHospitalName => params[:Hospital],:businessAddress => params[:address],:city => params[:city],:state => params[:State],:zip => params[:zip], :AmountID => @spend_id)
+            @rec.save
+        end
+
+       
+         @party=GeneralRecord.new(:ThirdPartyPayemntRecipientIndicator => params[:Party],:NameofThirdParty => params[:name_of_party],:Charity => params[:charity],:ContextualInformation => params[:info], :AmountID => @spend_id)
+         @party.save
+
+
+        if params[:category] == "Drug or Biological"
+            @prod = AssociatedProduct.new(:AmountID => @spend_id, :nameofDrugorBiological => params[:name] )
+            @prod.save
+        else
+            @prod = AssociatedProduct.new(:AmountID => @spend_id, :nameofDeviceorMedicalSupply => params[:name])
+            @prod.save
+        end
+
+        if params[:product].present?
+            params[:product].each_with_index do |(key,name1),k|
+                params[:category1].each_with_index do |(key,category1),l|
+                    if k == l
+                        print "#{name1}"
+                        puts ","
+                        puts category1
+
+                        if category1 == "Drug or Biological"
+                             @prod = AssociatedProduct.new(:AmountID => @spend_id, :nameofDrugorBiological => name1 )
+                             @prod.save
+                        else
+                             @prod = AssociatedProduct.new(:AmountID => @spend_id, :nameofDeviceorMedicalSupply => name1)
+                             @prod.save
+                        end
+                    end
+                end
+            end
+        end
+
+        redirect_to transfer_of_value_path(@spend_id)
+    end
+
+    def update
     end
 
 
@@ -100,12 +151,6 @@ class TransferOfValueController < ApplicationController
         #@Education = Education.new( :UserID => current_user.id, :SchoolName => @degree, :SchoolFrom => @from, :SchoolTo => @to )
        # @Education.save
         redirect_to transfer_of_value_path(params[:id])  
-
-
-
-    end
-
-    def update
     end
 
     def edit

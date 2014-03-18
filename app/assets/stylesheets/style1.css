@@ -603,3 +603,36 @@ $grayMediumLight: #eaeaea;
   text-indent: -9999px;
   background: url("/images/close-button.gif") no-repeat;
 }
+
+nav li {
+  list-style:none;
+  display:inline-block;
+  text-align:center;
+  background:#222;
+  color:#FFF;
+  width:100px;
+  padding:10px 20px
+}
+
+nav a {
+  text-decoration: none;
+  color:#FFF;
+}
+
+nav li div.dropdown {
+  display:block;
+  position:absolute
+}
+
+nav li div.dropdown .dropdown-inner {
+  right:20px; /* Equal to li padding Y */
+  width:100px; /* Equal to li width */
+  padding:10px 20px; /* Equal to li padding X */
+  background:#333;
+  top:10px;
+  position:relative
+}
+
+nav li span.dropdown a {
+  display:block;
+}

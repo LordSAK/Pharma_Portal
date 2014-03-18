@@ -1,2 +1,407 @@
-<h1>TransferOfValue#new</h1>
-<p>Find me in app/views/transfer_of_value/new.html.erb</p>
+<!--<div class="box1">
+	<h2>Spends</h2>
+	<table>
+		<tr>
+			<td>
+				Start Date <input type="text" id="TxtBx_StartDate" style="width:65px">
+			</td>
+			<td>
+				&nbsp;&nbsp;&nbsp;End Date <input type="text" id="TxtBx_EndDate" style="width:65px">
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td>
+				Recipent Category
+				<select>
+					<option value="All">All</option>
+				</select>
+			</td>
+			<td>
+				&nbsp;&nbsp;&nbsp;Recipent Type
+				<select>
+					<option value="All">All</option>
+				</select>
+			</td>
+			<td>
+				&nbsp;&nbsp;&nbsp;Recipent State
+				<select>
+					<option value="All">All</option>
+				</select>
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td>
+				Spend Activity Type
+				<select>
+					<option value="All">All</option>
+					<option value="Call">Call</option>
+					<option value="Advisory Board">Advisory Board</option>
+				</select>
+			</td>
+			<td>
+				&nbsp;&nbsp;&nbsp;Spend Detail Type
+				<select>
+					<option value="All">All</option>
+					<option value="Lunch">Lunch</option>
+					<option value="Travel">Travel</option>
+					<option value="Souvenir">Souvenir</option>
+					<option value="Meal">Meal</option>
+					<option value="Contracted Fee">Contracted Fee</option>
+				</select>
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td>
+				Business Purpose
+				<select>
+					<option value="All">All</option>
+					<option vlaue="Promotion">Promotion</option>
+				</select>
+			</td>
+			<td>
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td>
+				<input type="button" id="submit" value="Filter" style=" width:40px;height:35px;background-color:#181818;border-radius:5px; display:inline-block; color: white; font-size:10px;  text-decoration: none; margin-left: 5%; margin-top: 15px; margin-bottom: 15px; text-align:center;">
+			</td>
+			<td>
+			</td>
+		</tr>
+	</table>
+</div>-->
+<br/>
+<script type="text/javascript">
+$(document).ready(function(){
+	var Privileges = jQuery('#RecipientType');
+	var select = this.value;
+	if(Privileges.val() == 'Physician')
+	{
+	    $('#physician').show();
+    	$('#hospital').hide();
+	}
+	else
+	{
+		$('#physician').hide(); // hide div if value is not "custom"
+    	$('#hospital').show();
+	}
+	Privileges.change(function () {
+		if ($(this).val() == 'Physician') {
+	        $('#physician').show();
+    	    $('#hospital').hide();
+	    }
+    	else {
+	    	$('#physician').hide(); // hide div if value is not "custom"
+    		$('#hospital').show();
+    	}
+	});
+});
+</script>
+
+	<%= form_tag({controller: "transfer_of_value",:action => :create}) do |f| %>
+	<div class="box1" id="recipient">
+		<h2>
+			Recipient's Description
+		</h2>
+		<table>
+			<tr>
+				<td>
+					Recipient Type:
+				</td>
+				<td>
+					<select name="RecipientType" id="RecipientType"  >
+						<option value="Physician">Physician</option>
+						<option value="Hospital" >Hospital</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+		<table id="physician">
+			<tr>
+				<td>
+					Suffix: 
+				</td>
+				<td>
+					<input type="text" name="Suffix" id="Suffix"  />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					First Name: 
+				</td>
+				<td>
+					<input type="text" name="FirstName" id="FirstName" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Middle Name:
+				</td>
+				<td>
+					<input type="text" name="MiddleName" id="MiddleName"  />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Last Name: 
+				</td>
+				<td>
+					<input type="text" name="LastName" id="LastName"  />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Business Address: 
+				</td>
+				<td>
+					<input type="text" name="address" id="address"  />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					City: 
+				</td>
+				<td>
+					<input type="text" name="city" id="city"  />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					State: 
+				</td>
+				<td>
+					<input type="text" name="State" id="State" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Zip: 
+				</td>
+				<td>
+					<input type="text" name="zip" id="zip"  />
+				</td>
+			</tr>
+		</table>
+		<table id="hospital">
+			<tr>
+				<td>
+					Hospital: 
+				</td>
+				<td>
+					<input type="text" name="Hospital" id="Hospital"  />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Business Address: 
+				</td>
+				<td>
+					<input type="text" name="address" id="address"  />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					City: 
+				</td>
+				<td>
+					<input type="text" name="city" id="city" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					State: 
+				</td>
+				<td>
+					<input type="text" name="State" id="State"  />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Zip: 
+				</td>
+				<td>
+					<input type="text" name="zip" id="zip"  />
+				</td>
+			</tr>
+
+		</table>
+	</div>
+
+	<br/>
+
+	<div class="box1">
+		<h2>
+			Spend Description
+		</h2>
+		<table>
+			<tr>
+				<td>
+					Title:
+				</td>
+				<td>
+					<input type="text" name="title" id="title"  />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Amount: 
+				</td>
+				<td>
+					<input type="text" name="amount" id="amount"  />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Business Purpose: 
+				</td>
+				<td>
+					<input type="text" name="purpose" id="purpose"  />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Number of Payments:
+				</td>
+				<td>
+					<input type="text" name="num_of_pay" id="num_of_pay"  />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Spend Date: 
+				</td>
+				<td>
+					<input type="text" name="spend_date" id="spend_date"  />
+				</td>
+			</tr>
+		</table>
+	</div>
+
+	<br/>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $("#AddSch").click(function() {
+		    	var rownum=$("#ControlsProd > tbody > tr").length;
+		    	//alert(rownum);
+		        if (rownum == 0)
+		        {
+		        	updated_row_num=0;
+		        }
+		        else 
+		        {
+		        	updated_row_num=rownum/2;
+		        }
+                var field = $("#field").val();
+                
+                var newRow1 = "<tr><td> <input type='button' class='btn_rmvsch' value='Remove'/></td></tr>";
+
+
+                var input1 = "<input name='product["+ updated_row_num +"]' id='field' type='text' />"
+                var newRow = "<tr><td><input type='radio' id='category' "
+                +"name='category1["+updated_row_num+"]' value='Drug or Biological' />Drug or Biological"
+                +"</td><td><input type='radio' id='category' name='category1["+updated_row_num+"]'"
+                +"value='Device or Mdeical Supply'  />Device or Mdeical Supply</td>	</tr>"
+                +"<tr><td>" + input1 + "</td></tr>";
+                $('#ControlsProd').append(newRow);
+                $('#ControlsProd').append(newRow1);
+
+            });
+            $('#ControlsProd').on('click', '.btn_rmvsch', function() {
+                var index = $(this).closest('tr').index() + 2
+                //alert(index);
+                $('#ControlsProd tr:nth-child(n+' + (index - 3) + ')').remove();
+                return false;
+            });
+        })
+	</script>
+	<div class="box1">
+		<h2>
+			Products
+		</h2>
+		<table>
+			<tr>
+				<td>
+					<input type="radio" id="category" name="category" 
+                    value="Drug or Biological" />Drug or Biological
+                </td>
+                <td>
+                	<input type="radio" id="category" name="category" 
+                    value="Device or Mdeical Supply" />Device or Mdeical Supply
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Product:
+				</td>
+				<td>
+					<input type="text" name="name"  />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="button" name="AddSch" id="AddSch" Value="Add" />
+				</td>
+			</tr>
+		</table>
+		<table id="ControlsProd">
+		</table>
+	</div>
+
+	<br/>
+
+	<div class="box1">
+		<h2>
+			3rd Party Payee
+		</h2>
+		<table>
+			<tr>
+				<td>
+					3rd Party Indicatror: 
+				</td>
+				<td>
+					<select name="Party" id="Party"  >
+						<option value="Entity" selected >Entity</option>
+						<option value="Individual" >Individual</option>
+						<option value="No Third Party">No Third Party</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Name of 3rd Party Entity: 
+				</td>
+				<td>
+					<input type="text" name="name_of_party" id="name_of_party"  />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Charity: 
+				</td>
+				<td>
+					<input type="text" name="charity" id="charity"  />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Information: 
+				</td>
+				<td>
+					<input type="text" name="info" id="info"  />
+				</td>
+			</tr>
+		</table>
+	</div>
+	
+	<%= submit_tag "Save changes", :style => "background-color:#181818;border-radius:15px; display:inline-block; color: white; font-family: Raleway; font-size:15px; padding:14px 30px; text-decoration: none; margin-left: 20%; margin-top: 15px; margin-bottom: 15px; text-align:center;" %>
+	<% end %>
+</div>
