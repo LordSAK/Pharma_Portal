@@ -113,7 +113,7 @@ class TransferOfValueController < ApplicationController
             
 
 
-        redirect_to disputes
+        redirect_to '/disputes'
 
     end
 

@@ -14,7 +14,7 @@ class DisputesController < ApplicationController
 			@dispute1.first.update_attribute(:Description, params[:Description])
 			@dispute1.first.update_attribute(:DisputeDate, params[:DisputeDate])
 		end
-		redirect_to transfer_of_value
+		redirect_to '/transfer_of_value'
 	end
 
 	def edit
