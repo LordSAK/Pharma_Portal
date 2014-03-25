@@ -250,6 +250,8 @@
 				<td>
 					<% if !@dispute.first.ResolveDate.nil? %>
 						<input type="text" name="ResolveDate" id="ResolveDate" value="<%= @dispute.first.ResolveDate.to_time.strftime('%b %d,%Y') %>" />
+					<%else %>
+						<input type="text" name="ResolveDate" id="ResolveDate" value="" />
 					<% end %>
 				</td>
 			</tr>
