@@ -104,7 +104,7 @@ class TransferOfValueController < ApplicationController
             end
         end
 
-        @dispute1=Dispute.where("AmountID = ?",  params[:idSpend])
+        @dispute1=Dispute.where('"AmountID" = ?',  params[:idSpend])
             @dispute1.first.update_attribute(:Status, params[:Status])
             @dispute1.first.update_attribute(:Description, params[:Description])
             @dispute1.first.update_attribute(:DisputeDate, params[:DisputeDate])
@@ -113,7 +113,7 @@ class TransferOfValueController < ApplicationController
             
 
 
-        redirect_to '/disputes'
+        redirect_to disputes
 
     end
 
