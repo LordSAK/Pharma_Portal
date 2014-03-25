@@ -1,4 +1,4 @@
-<div class="box1">
+<!--<div class="box1">
 	<h2>Spends</h2>
 	<table>
 		<tr>
@@ -77,8 +77,8 @@
 			</td>
 		</tr>
 	</table>
-</div>
-<br/>
+</div>-->
+
 
 <div class="box1" id="recipient">
 	<h2>
@@ -677,11 +677,77 @@
 				<tr>
 					<td>
 						<%=  submit_tag 'Update' %>
-					</td>
+					</td>						
 				</tr>
 			</table>
 		<% end %>
 	</div>
 </div>
 
+<a id="Open_Dispute" style="background-color:#181818;border-radius:10px; display:inline-block; color: white; font-family: Raleway; font-size:12px; padding:8px 18px; text-decoration: none; margin-top: 15px; margin-bottom: 15px; text-align:center;cursor:pointer;">
+				Raise a Dispute
+</a>
 
+<script type="text/javascript">
+		var el=document.getElementById("Open_Dispute");
+		el.onclick = show_dispute_dialog;
+			function show_dispute_dialog(){
+				$("#dispute_dialog").dialog(
+				{
+    				create: function (event) {
+    				$(event.target).parent().css('position', 'fixed'); 
+	    		},
+    			resizeStart: function (event) {
+    				$(event.target).parent().css('position', 'fixed'); 
+    			},
+	    		resizeStop: function (event) {
+    				$(event.target).parent().css('position', 'fixed'); 
+    			}
+			});
+		}
+</script>
+
+<div id="dispute_dialog" title="Dispute" style="font-size:12px;" hidden >
+	<%= form_tag({controller: "disputes",:action => :create, :remote => true}) do |f| %>
+		<table>
+			<tr>
+				<td>
+					Status:
+				</td>
+				<td>
+					<select id="status" name="status">
+						<option value="Open" selected>Open</option>
+						<option value="Dispute">Dispute</option>
+						<option value="Resolved">Resolved</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Description:
+				</td>
+				<td>
+					<textarea id="Description" name="Description" rows="3" cols="28">
+					</textarea>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Date:
+				</td>
+				<td>
+					<input type="text" name="DisputeDate" id="DisputeDAte" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="hidden" id="id" name="id" value="<%= @spends.id %>" />
+			</tr>
+			<tr>
+				<td>
+					<%= submit_tag 'update' %>
+				</td>
+			</tr>
+		</table>
+	<% end %>
+</div>

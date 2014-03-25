@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140307110052) do
+ActiveRecord::Schema.define(version: 20140320091743) do
 
   create_table "associated_products", force: true do |t|
     t.string   "productIndicator"
@@ -21,6 +21,17 @@ ActiveRecord::Schema.define(version: 20140307110052) do
     t.integer  "AmountID"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "disputes", force: true do |t|
+    t.integer  "AmountID"
+    t.string   "Description"
+    t.string   "Status"
+    t.datetime "DisputeDate"
+    t.datetime "ResolveDate"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "ResolveDescription"
   end
 
   create_table "events", force: true do |t|

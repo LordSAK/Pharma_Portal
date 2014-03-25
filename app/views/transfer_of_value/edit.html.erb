@@ -1,162 +1,268 @@
-<div class="box1">
-	<h2>Spends</h2>
-	<table>
-		<tr>
-			<td>
-				Start Date <input type="text" id="TxtBx_StartDate" style="width:65px">
-			</td>
-			<td>
-				&nbsp;&nbsp;&nbsp;End Date <input type="text" id="TxtBx_EndDate" style="width:65px">
-			</td>
-		</tr>
-	</table>
-	<table>
-		<tr>
-			<td>
-				Recipent Category
-				<select>
-					<option value="All">All</option>
-				</select>
-			</td>
-			<td>
-				&nbsp;&nbsp;&nbsp;Recipent Type
-				<select>
-					<option value="All">All</option>
-				</select>
-			</td>
-			<td>
-				&nbsp;&nbsp;&nbsp;Recipent State
-				<select>
-					<option value="All">All</option>
-				</select>
-			</td>
-		</tr>
-	</table>
-	<table>
-		<tr>
-			<td>
-				Spend Activity Type
-				<select>
-					<option value="All">All</option>
-					<option value="Call">Call</option>
-					<option value="Advisory Board">Advisory Board</option>
-				</select>
-			</td>
-			<td>
-				&nbsp;&nbsp;&nbsp;Spend Detail Type
-				<select>
-					<option value="All">All</option>
-					<option value="Lunch">Lunch</option>
-					<option value="Travel">Travel</option>
-					<option value="Souvenir">Souvenir</option>
-					<option value="Meal">Meal</option>
-					<option value="Contracted Fee">Contracted Fee</option>
-				</select>
-			</td>
-		</tr>
-	</table>
-	<table>
-		<tr>
-			<td>
-				Business Purpose
-				<select>
-					<option value="All">All</option>
-					<option vlaue="Promotion">Promotion</option>
-				</select>
-			</td>
-			<td>
-			</td>
-		</tr>
-	</table>
-	<table>
-		<tr>
-			<td>
-				<input type="button" id="submit" value="Filter" style=" width:40px;height:35px;background-color:#181818;border-radius:5px; display:inline-block; color: white; font-size:10px;  text-decoration: none; margin-left: 5%; margin-top: 15px; margin-bottom: 15px; text-align:center;">
-			</td>
-			<td>
-			</td>
-		</tr>
-	</table>
-</div>
-<br/>
-
-<div class="box1">
-	<%= form_for(@spends) do |f| %>
-	<h2>Spend Description</h2>
-	&nbsp;&nbsp;&nbsp;
-	<b style="font-size:14px">
-		Amount: 
-	</b>
-	<p>
-		&nbsp;&nbsp;&nbsp;
-		<%= f.text_field :Amount %>
-	</p>
-	&nbsp;&nbsp;&nbsp;
-	<b style="font-size:14px">
-		Spend Activity: 
-	</b>
-	<p>
-		&nbsp;&nbsp;&nbsp;
-		<%= f.text_field :SpendActivity %>
-	</p>
-	&nbsp;&nbsp;&nbsp;
-	<b style="font-size:14px">
-		Spend Detail: 
-	</b>
-	<p>
-		&nbsp;&nbsp;&nbsp;
-		<%= f.text_field :SpendDetail %>
-	</p>
-	&nbsp;&nbsp;&nbsp;
-	<b style="font-size:14px">
-		Business Purpose: 
-	</b>
-	<p>
-		&nbsp;&nbsp;&nbsp;
-		<%= f.text_field :BusinessPurpose %>
-	</p>
-	&nbsp;&nbsp;&nbsp;
-	<b style="font-size:14px">
-		Spend Description: 
-	</b>
-	<p>
-		&nbsp;&nbsp;&nbsp;
-		<%= f.text_field :spend_description %>
-	</p>
-	&nbsp;&nbsp;&nbsp;
-	<b style="font-size:14px">
-		Spend Date: 
-	</b>
-	<p>
-		&nbsp;&nbsp;&nbsp;
-		<%= f.text_field :Date %>
-	</p>
-	&nbsp;&nbsp;&nbsp;
-	<b style="font-size:14px">
-		Payment Date: 
-	</b>
-	<p>
-		&nbsp;&nbsp;&nbsp;
-		<%= f.text_field :payment_date %>
-	</p>
-	&nbsp;&nbsp;&nbsp;
-	<b style="font-size:14px">
-		Source System: 
-	</b>
-	<p>
-		&nbsp;&nbsp;&nbsp;
-		<%= f.text_field :source_system %>
-	</p>
-	&nbsp;&nbsp;&nbsp;
-	<b style="font-size:14px">
-		Source Company: 
-	</b>
-	<p>
-		&nbsp;&nbsp;&nbsp;
-		<%= f.text_field :source_company %>
-	</p>
-
-	<p>
-		<%= f.submit "Save changes", , :style => "background-color:#181818;border-radius:15px; display:inline-block; color: white; font-family: Raleway; font-size:15px; padding:14px 30px; text-decoration: none; margin-left: 20%; margin-top: 15px; margin-bottom: 15px; text-align:center;" %>
-	<% end %>
-</div>
+<%= form_tag ({controller: "transfer_of_value",:action => :updates, :remote => true}) do |f| %>
+	<div class="box1">
+		<h2>Spend Description</h2>
+		<table>
+			<tr>
+				<td>
+					Title:
+				</td>
+				<td>
+					<input type="text" name="title" id="title" value="<%= @spends.paymentName %>" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Amount: 
+				</td>
+				<td>
+					<input type="text" name="amount" id="amount" value="<%= @spends.totalAmount %>" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Business Purpose: 
+				</td>
+				<td>
+					<input type="text" name="purpose" id="purpose" value="<%= @spends.NatureofPayment %>" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Number of Payments:
+				</td>
+				<td>
+					<input type="text" name="num_of_pay" id="num_of_pay" value="<%= @spends.numberofPayment %>" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Spend Date: 
+				</td>
+				<td>
+					<% if !@spends.DateofPayment.nil? %>
+						<input type="text" name="spend_date" id="spend_date" value="<%= @spends.DateofPayment.to_time.strftime('%b %d,%Y') %>" />
+					<% else %>
+						<input type="text" name="spend_date" id="spend_date" value="" />
+					<% end %>
+				</td>
+			</tr>
+			<tr> 
+				<td>
+					<input type="hidden" id="idSpen" name="idSpen" value="<%= @spends.id %>" />
+				</td>
+			</tr>
+		</table>
+	</div>
+	<br/>
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $("#AddSch").click(function() {
+		    	
+		    	var rownum=$("#ControlsProd > tbody > tr").length;
+		    	//alert(rownum);
+		        if (rownum == 0)
+		        {
+		        	updated_row_num=0;
+		        }
+		        else 
+		        {
+		        	updated_row_num=rownum/2;
+		        }
+                var field = $("#field").val();
+                
+                var newRow1 = "<tr><td> <input type='button' class='btn_rmvsch' value='Remove'/></td></tr>";
+                var input1 = "<input name='product["+ updated_row_num +"]' id='field' type='text' />"
+                var newRow = "<tr><td><input type='radio' id='category' "
+                +"name='category1["+updated_row_num+"]' value='Drug or Biological' />Drug or Biological"
+                +"</td><td><input type='radio' id='category' name='category1["+updated_row_num+"]'"
+                +"value='Device or Mdeical Supply'  />Device or Mdeical Supply</td>	</tr>"
+                +"<tr><td>" + input1 + "</td></tr>";
+                $('#ControlsProd').append(newRow);
+                $('#ControlsProd').append(newRow1);
+            });
+            $('#ControlsProd').on('click', '.btn_rmvsch', function() {
+                var index = $(this).closest('tr').index() + 2
+                //alert(index);
+                $('#ControlsProd tr:nth-child(n+' + (index - 3) + ')').remove();
+                return false;
+            });
+        })
+	</script>
+	<div class="box1">
+		<h2>Products</h2>
+		<table>
+			<% @Products.each_with_index do |p,i| %>
+				<% if p.nameofDrugorBiological.blank? %>
+				<tr>
+					<td>
+						<input type="radio" id="category" name="category[<%= i %>]" 
+                    value="Drug or Biological" />Drug or Biological
+               		</td>
+               		<td>
+                   		<input type="radio" id="category" name="category[<%= i %>]" 
+                    value="Device or Mdeical Supply" checked />Device or Mdeical Supply
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Product:
+					</td>
+					<td>
+						<input type="text" name="name[<%= i %>]" value="<%= p.nameofDeviceorMedicalSupply %>" />
+					</td>
+				</tr>
+				<% else %>
+				<tr>
+					<td>
+						<input type="radio" id="category" name="category[<%= i %>]" 
+                    value="Drug or Biological" checked />Drug or Biological
+               		</td>
+               		<td>
+               			<input type="radio" id="category" name="category[<%= i %>]" 
+                    value="Device or Mdeical Supply"  />Device or Mdeical Supply
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Product: 
+					</td>
+					<td>
+						<input tye="text" name="name[<%= i %>]" value="<%= p.nameofDrugorBiological %>" />
+					</td>
+				</tr>
+				<% end %>
+			<% end %>
+			<tr>
+				<td>
+					<input type="button" name="AddSch" id="AddSch" Value="Add" />
+					<input type="hidden" id="idSpend" name="idSpend" value="<%= @spends.id %>" />
+				</td>
+			</tr>
+		</table>
+		<table id="ControlsProd">
+		</table>
+	</div>
+	<br/>
+	<div class="box1">
+		<h2>3rd Party Payee</h2>
+		<table>
+			<tr>
+				<td>
+					3rd Party Indicatror: 
+				</td>
+				<td>
+					<select name="Party" id="Party"  >
+						<% if @ThirdParty.first.ThirdPartyPayemntRecipientIndicator== "Entity" %>
+							<option value="Entity" selected >Entity</option>
+							<option value="Individual" >Individual</option>
+							<option value="No Third Party">No Third Party</option>
+						<% elsif @ThirdParty.first.ThirdPartyPayemntRecipientIndicator == "Individual" %>
+							<option value="Entity">Entity</option>
+							<option value="Individual" selected>Individual</option>
+							<option value="No Third Party">No Third Party</option>
+						<% else %>
+							<option value="Entity">Entity</option>
+							<option value="Individual" >Individual</option>
+							<option value="No Third Party" selected>No Third Party</option>
+						<% end %>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Name of 3rd Party Entity: 
+				</td>
+				<td>
+					<input type="text" name="name_of_party" id="name_of_party" value="<%= @ThirdParty.first.NameofThirdParty %>" />
+				</td>
+			</tr>
+				<tr>
+					<td>
+   						Charity: 
+					</td>
+					<td>
+						<input type="text" name="charity" id="charity" value="<%= @ThirdParty.first.Charity %>" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Information: 
+					</td>
+					<td>
+						<input type="text" name="info" id="info" value="<%= @ThirdParty.first.ContextualInformation %>" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="hidden" id="idThird" name="idThird" value="<%= @ThirdParty.first.id %>" />
+					</td>
+				</tr>
+		</table>
+	</div>
+	<br/>
+	<div class="box1">
+		<h2>Dispute</h2>
+		<table>
+			<tr>
+				<td>
+					Dispute
+				</td>
+				<td>
+					<select name="Status" id="Status"  >
+						<% if @dispute.first.Status == "Open" %>
+							<option value="Open" selected >Open</option>
+							<option value="Dispute" >Dispute</option>
+							<option value="Resolved">Resolved</option>
+						<% elsif @dispute.first.Status == "Dispute" %>
+							<option value="Open" >Open</option>
+							<option value="Dispute" selected >Dispute</option>
+							<option value="Resolved">Resolved</option>
+						<% else %>
+							<option value="Open" >Open</option>
+							<option value="Dispute" >Dispute</option>
+							<option value="Resolved" selected >Resolved</option>
+						<% end %>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Descripion
+				</td>
+				<td>
+					<input type="text" name="Description" id="Descrption" value="<%= @dispute.first.Description %>" />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Date: 
+				</td>
+				<td>
+					<% if !@dispute.first.DisputeDate.nil? %>
+						<input type="text" name="DisputeDate" id="DisputeDate" value="<%= @dispute.first.DisputeDate.to_time.strftime('%b %d,%Y') %>" />
+					<%end %>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Resolving Date: 
+				</td>
+				<td>
+					<% if !@dispute.first.ResolveDate.nil? %>
+						<input type="text" name="ResolveDate" id="ResolveDate" value="<%= @dispute.first.ResolveDate.to_time.strftime('%b %d,%Y') %>" />
+					<% end %>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Resolving Comments:
+				</td>
+				<td>
+					<input type="text" name="FinalComment" id="FinalComment" value="<%= @dispute.first.ResolveDescription %>" />
+				</td>
+			</tr>
+		</table>
+	</div>
+	<br/>
+	<%= submit_tag 'Update' %>
+<%end%>

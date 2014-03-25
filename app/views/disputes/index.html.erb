@@ -1,0 +1,100 @@
+<div class="box1">
+	<h2>Cases</h2>
+	<table>
+		<tr>
+			<td>
+				Exception
+				<select>
+					<option value="All">All</option>
+				</select>
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td>
+				Case Status
+				<select id="status" name="status">
+					<option value="Open" selected>Open</option>
+					<option value="Dispute">Dispute</option>
+					<option value="Resolved">Resolved</option>
+				</select>
+			</td>
+
+			<td>
+				&nbsp;&nbsp;&nbsp;Start Date <input type="text" id="TxtBx_StartDate" style="width:65px">
+			</td>
+			<td>
+				&nbsp;&nbsp;&nbsp;End Date <input type="text" id="TxtBx_EndDate" style="width:65px">
+			</td>
+		</tr>
+	</table>
+	<table>
+		<tr>
+			<td>
+				<input type="button" id="submit" value="Filter" style=" width:40px;height:35px;background-color:#181818;border-radius:5px; display:inline-block; color: white; font-size:10px;  text-decoration: none; margin-left: 5%; margin-top: 15px; margin-bottom: 15px; text-align:center;">
+			</td>
+			<td>
+			</td>
+		</tr>
+	</table>
+</div>
+<br/>
+<table class="tablestyle" width="100%">
+	<tr>
+		<th>
+			Case Id
+		</th>
+		<th>
+			Spend Id
+		</th>
+		<th>
+			status
+		</th>
+		<th>
+			Description
+		</th>
+		<th>
+			Created
+		</th>
+		<th>
+
+		</th>
+		
+	</tr>
+	<% if @dispute.nil? %>
+	<tr>
+		<td>
+			No Dispute is raised.
+		</td>
+	</tr>
+	<% else %>
+		<% @dispute.each do |d| %>
+		<tr>
+			<td>
+				<!-- #link_to d.id,d, style: "color: #0099cc;font-weight:bold" -->
+				<%= d.id %>
+			</td>
+			<td>
+				<%= link_to d.AmountID, transfer_of_value_path(d.AmountID), style: "color:#0099cc;font-weight:bold" %>
+			</td>
+			<td>
+				<%= d.Status %>
+			</td>
+			<td>
+				<%= d.Description %>
+			</td>
+			<td>
+				<% if !d.DisputeDate.nil? %>
+				<%= d.DisputeDate.to_time.strftime('%b %d,%Y') %>
+				<% end %>
+			</td>
+			<td>
+				<% if d.Status == "Dispute" %>
+					<%= link_to "Correct Spend",edit_transfer_of_value_path(d.AmountID), style: "color:#0099cc;font-weight:bold" %>
+				<% end %>
+			</td>			
+		</tr>
+		<% end %>
+	<% end %>
+</table>

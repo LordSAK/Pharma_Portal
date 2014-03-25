@@ -10,6 +10,7 @@ PharmaPortal::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :transfer_of_value
+  resources :disputes
   #root to: "static_pages#home"
   root to: "users#new"
   match '/dashboard',to: "static_pages#dashboard", via: 'get'
@@ -22,6 +23,7 @@ PharmaPortal::Application.routes.draw do
   match '/spends', to: 'transfer_of_value#spends', :via => :post
   match '/party',to: 'transfer_of_value#party', :via => :post
   match '/product', to: 'transfer_of_value#product', :via => :post
+  match '/updates',to: 'transfer_of_value#updates',:via => :post
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

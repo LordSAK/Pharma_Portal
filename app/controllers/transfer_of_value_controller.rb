@@ -5,23 +5,19 @@ class TransferOfValueController < ApplicationController
     end
 
     def create
-         @spen=TransferOfValue.new(:paymentName => params[:title],:totalAmount => params[:amount] ,:NatureofPayment => params[:purpose], :numberofPayment => params[:num_of_pay],:DateofPayment => params[:spend_date])
-         @spen.save
-         @spend_id=TransferOfValue.last.id
+        @spen=TransferOfValue.new(:paymentName => params[:title],:totalAmount => params[:amount] ,:NatureofPayment => params[:purpose], :numberofPayment => params[:num_of_pay],:DateofPayment => params[:spend_date])
+        @spen.save
+        @spend_id=TransferOfValue.last.id
 
-         if params[:RecipientType] == "Physician"
+        if params[:RecipientType] == "Physician"
             @rec=Recipient.new(:recipientType => params[:RecipientType],:physicianFirstName => params[:FirstName],:physicianMiddleName => params[:MiddleName],:physicianLastName =>params[:LastName],:suffix => params[:Suffix],:businessAddress => params[:address],:city =>params[:city],:state => params[:State],:zip => params[:zip], :AmountID => @spend_id)
             @rec.save
         else
             @rec=Recipient.new(:recipientType => params[:RecipientType],:teachingHospitalName => params[:Hospital],:businessAddress => params[:address],:city => params[:city],:state => params[:State],:zip => params[:zip], :AmountID => @spend_id)
             @rec.save
         end
-
-       
-         @party=GeneralRecord.new(:ThirdPartyPayemntRecipientIndicator => params[:Party],:NameofThirdParty => params[:name_of_party],:Charity => params[:charity],:ContextualInformation => params[:info], :AmountID => @spend_id)
-         @party.save
-
-
+        @party=GeneralRecord.new(:ThirdPartyPayemntRecipientIndicator => params[:Party],:NameofThirdParty => params[:name_of_party],:Charity => params[:charity],:ContextualInformation => params[:info], :AmountID => @spend_id)
+        @party.save
         if params[:category] == "Drug or Biological"
             @prod = AssociatedProduct.new(:AmountID => @spend_id, :nameofDrugorBiological => params[:name] )
             @prod.save
@@ -53,7 +49,72 @@ class TransferOfValueController < ApplicationController
         redirect_to transfer_of_value_path(@spend_id)
     end
 
-    def update
+    def updates
+        @spen=TransferOfValue.find(params[:idSpen])
+
+        @spen.update_attribute(:paymentName,params[:title])
+        @spen.update_attribute(:totalAmount,params[:amount])
+        @spen.update_attribute(:NatureofPayment,params[:purpose])
+        @spen.update_attribute(:numberofPayment,params[:num_of_pay])
+        @spen.update_attribute(:DateofPayment,params[:spend_date])
+
+        @party=GeneralRecord.find(params[:idThird])
+
+        @party.update_attribute(:ThirdPartyPayemntRecipientIndicator,params[:Party])
+        @party.update_attribute(:NameofThirdParty,params[:name_of_party])
+        @party.update_attribute(:Charity,params[:charity])
+        @party.update_attribute(:ContextualInformation,params[:info])
+
+        AssociatedProduct.delete_all(:AmountID => params[:idSpend])
+        params[:name].each_with_index do |(key,name),i|
+            params[:category].each_with_index do |(key,category),j|
+                if i == j
+                    print "#{name}"
+                    puts ","
+                    puts category
+
+                    if category == "Drug or Biological"
+                         @prod = AssociatedProduct.new(:AmountID => params[:idSpend], :nameofDrugorBiological => name )
+                         @prod.save
+                    else
+                         @prod = AssociatedProduct.new(:AmountID => params[:idSpend], :nameofDeviceorMedicalSupply => name)
+                         @prod.save
+                    end
+                end
+            end
+        end
+
+        if !params[:product].blank?
+            params[:product].each_with_index do |(key,name1),k|
+                params[:category1].each_with_index do |(key,category1),l|
+                    if k == l
+                        print "#{name1}"
+                        puts ","
+                        puts category1
+
+                        if category1 == "Drug or Biological"
+                            @prod = AssociatedProduct.new(:AmountID => params[:idSpend], :nameofDrugorBiological => name1 )
+                            @prod.save
+                        else
+                            @prod = AssociatedProduct.new(:AmountID => params[:idSpend], :nameofDeviceorMedicalSupply => name1)
+                            @prod.save
+                        end
+                    end
+                end
+            end
+        end
+
+        @dispute1=Dispute.where("AmountID = ?",  params[:idSpend])
+            @dispute1.first.update_attribute(:Status, params[:Status])
+            @dispute1.first.update_attribute(:Description, params[:Description])
+            @dispute1.first.update_attribute(:DisputeDate, params[:DisputeDate])
+            @dispute1.first.update_attribute(:ResolveDate, params[:ResolveDate] )
+            @dispute1.first.update_attribute(:ResolveDescription,params[:FinalComment])
+            
+
+
+        redirect_to '/disputes'
+
     end
 
 
@@ -157,6 +218,7 @@ class TransferOfValueController < ApplicationController
         @Recipients=Recipient.where('"AmountID" = ?',params[:id])
         @Products= AssociatedProduct.where('"AmountID" = ?',params[:id])
         @ThirdParty=GeneralRecord.where('"AmountID" = ?', params[:id])
+        @dispute=Dispute.where('"AmountID" = ?',params[:id])
     end
 
     def index
