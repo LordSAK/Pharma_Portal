@@ -9,7 +9,7 @@ class DisputesController < ApplicationController
 			@dispute=Dispute.new(:AmountID => params[:id],:Status => params[:status],:Description => params[:Description],:DisputeDate => params[:DisputeDate])
 			@dispute.save
 		else
-			@dispute1=Dispute.where("AmountID = ?",  params[:id])
+			@dispute1=Dispute.where('"AmountID" = ?',  params[:id])
 			@dispute1.first.update_attribute(:Status, params[:status])
 			@dispute1.first.update_attribute(:Description, params[:Description])
 			@dispute1.first.update_attribute(:DisputeDate, params[:DisputeDate])
@@ -22,7 +22,7 @@ class DisputesController < ApplicationController
 
 	def index
 		#@spends=TransferOfValue.all
-		@dispute=Dispute.joins("inner join transfer_of_values on disputes.AmountID = transfer_of_values.id")
+		@dispute=Dispute.joins('inner join "transfer_of_values" on "disputes"."AmountID" = "transfer_of_values"."id"')
 	end
 
 	def show
