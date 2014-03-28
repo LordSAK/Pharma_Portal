@@ -1,7 +1,9 @@
 class TransferOfValueController < ApplicationController
     respond_to :html, :json
 
-    def new       
+    def new
+        @physicians = User.where(userType: 'Physician')
+        @hospitals = User.where(userType: 'Hospital')
     end
 
     def create
@@ -10,10 +12,10 @@ class TransferOfValueController < ApplicationController
         @spend_id=TransferOfValue.last.id
 
         if params[:RecipientType] == "Physician"
-            @rec=Recipient.new(:recipientType => params[:RecipientType],:physicianFirstName => params[:FirstName],:physicianMiddleName => params[:MiddleName],:physicianLastName =>params[:LastName],:suffix => params[:Suffix],:businessAddress => params[:address],:city =>params[:city],:state => params[:State],:zip => params[:zip], :AmountID => @spend_id)
+            @rec=RecipientAmount.new(:RecipientID => params[:RecID], :AmountID => @spend_id)
             @rec.save
         else
-            @rec=Recipient.new(:recipientType => params[:RecipientType],:teachingHospitalName => params[:Hospital],:businessAddress => params[:address],:city => params[:city],:state => params[:State],:zip => params[:zip], :AmountID => @spend_id)
+            @rec=RecipientAmount.new(:RecipientID => params[:RecID1], :AmountID => @spend_id)
             @rec.save
         end
         @party=GeneralRecord.new(:ThirdPartyPayemntRecipientIndicator => params[:Party],:NameofThirdParty => params[:name_of_party],:Charity => params[:charity],:ContextualInformation => params[:info], :AmountID => @spend_id)
@@ -105,14 +107,13 @@ class TransferOfValueController < ApplicationController
         end
 
         @dispute1=Dispute.where('"AmountID" = ?',  params[:idSpend])
+        #@date=Date.strptime params[:DisputeDate], '%m-%d-%Y'
+#        @Resdate=Date.strptime params[:ResolveDate], '%m-%d-%Y'
             @dispute1.first.update_attribute(:Status, params[:Status])
             @dispute1.first.update_attribute(:Description, params[:Description])
             @dispute1.first.update_attribute(:DisputeDate, params[:DisputeDate])
-            @dispute1.first.update_attribute(:ResolveDate, params[:ResolveDate] )
+            @dispute1.first.update_attribute(:ResolveDate, @Resdate )
             @dispute1.first.update_attribute(:ResolveDescription,params[:FinalComment])
-            
-
-
         redirect_to '/disputes'
 
     end
@@ -227,8 +228,13 @@ class TransferOfValueController < ApplicationController
 
     def show
   	   @spends=TransferOfValue.find(params[:id])
-       @Recipients=Recipient.where('"AmountID" = ?',params[:id])
+       @getRecID=RecipientAmount.where('"AmountID" = ?',params[:id])
+       if !@getRecID.blank?
+            @Recipients=User.find(@getRecID.first.RecipientID)
+        end
   	   @Products= AssociatedProduct.where('"AmountID" = ?',params[:id])
   	   @ThirdParty=GeneralRecord.where('"AmountID" = ?', params[:id])
+               @physicians = User.where(userType: 'Physician')
+        @hospitals = User.where(userType: 'Hospital')
     end
 end

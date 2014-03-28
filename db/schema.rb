@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140320091743) do
+ActiveRecord::Schema.define(version: 20140327084633) do
 
   create_table "associated_products", force: true do |t|
     t.string   "productIndicator"
@@ -55,6 +55,13 @@ ActiveRecord::Schema.define(version: 20140320091743) do
     t.datetime "updated_at"
   end
 
+  create_table "recipient_amounts", force: true do |t|
+    t.integer  "RecipientID"
+    t.integer  "AmountID"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "recipients", force: true do |t|
     t.string   "recipientType"
     t.string   "teachingHospitalName"
@@ -76,7 +83,6 @@ ActiveRecord::Schema.define(version: 20140320091743) do
     t.string   "physicianSpecialty"
     t.string   "physicianLicenseState"
     t.string   "physicianLicenseNumber"
-    t.integer  "AmountID"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -102,6 +108,25 @@ ActiveRecord::Schema.define(version: 20140320091743) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.string   "LastName"
+    t.string   "userType"
+    t.string   "teachingHospitalName"
+    t.string   "teachingHospitalTaxIDNumber"
+    t.string   "physicianFirstName"
+    t.string   "physicianMiddleName"
+    t.string   "physicianLastName"
+    t.string   "suffix"
+    t.string   "businessAddress"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "country"
+    t.string   "province"
+    t.string   "postalCode"
+    t.string   "physicianPrimaryType"
+    t.string   "physicianNPI"
+    t.string   "physicianSpecialty"
+    t.string   "physicianLicenseState"
+    t.string   "physicianLicenseNumber"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

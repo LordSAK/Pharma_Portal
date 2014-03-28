@@ -55,6 +55,12 @@
 	</div>
 	<br/>
 	<script type="text/javascript">
+
+		$("#spend_date").datepicker({
+			buttonImageOnly:true,
+			buttonImage: 'calendar.jpg',
+			dateFormat: 'mm-dd-yy'
+		});
 		$(document).ready(function() {
 		    $("#AddSch").click(function() {
 		    	
@@ -268,3 +274,15 @@
 	<br/>
 	<%= submit_tag 'Update' %>
 <%end%>
+<script type="text/javascript">
+	$("#ResolveDate").datepicker({
+			buttonImageOnly:true,
+			buttonImage: 'calendar.jpg',
+			dateFormat: 'mm-dd-yy'
+		});
+	$("#DisputeDate").datepicker({
+			buttonImageOnly:true,
+			buttonImage: 'calendar.jpg',
+			dateFormat: 'mm-dd-yy'
+		});
+</script>

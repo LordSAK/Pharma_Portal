@@ -83,31 +83,33 @@
 <div class="box1" id="recipient">
 	<h2>
 		Recipient's Description
-		<span style="float:right">
-			<a id="Open_Recipient" style="color:blue;cursor:pointer;">
-				Edit
-			</a>
-		</span>
-	</h2>
-	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Recipient Type: </b><p>&nbsp;&nbsp;&nbsp;<%= @Recipients.first.recipientType %></p>
-	<% if @Recipients.first.recipientType == "Physician" %>
-		<% suffix= @Recipients.first.suffix %>
-		<% firstName= @Recipients.first.physicianFirstName %>
-		<% user_name=suffix+ " " + firstName %>
-		<% if !@Recipients.first.physicianMiddleName.blank? %>
-			<% user_name += " "+@Recipients.first.physicianMiddleName %>
+		<% if current_user.userType == "Employee" %>
+			<span style="float:right">
+				<a id="Open_Recipient" style="color:blue;cursor:pointer;">
+					Edit
+				</a>
+			</span>
 		<% end %>
-		<% if !@Recipients.first.physicianLastName.blank? %>
-			<% user_name += " "+ @Recipients.first.physicianLastName %>
+	</h2>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Recipient Type: </b><p>&nbsp;&nbsp;&nbsp;<%= @Recipients.userType %></p>
+	<% if @Recipients.userType == "Physician" %>
+		<% suffix= @Recipients.suffix %>
+		<% firstName= @Recipients.physicianFirstName %>
+		<% user_name=suffix+ " " + firstName %>
+		<% if !@Recipients.physicianMiddleName.blank? %>
+			<% user_name += " "+@Recipients.physicianMiddleName %>
+		<% end %>
+		<% if !@Recipients.physicianLastName.blank? %>
+			<% user_name += " "+ @Recipients.physicianLastName %>
 		<% end %>
 		&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Physician Name: </b><p>&nbsp;&nbsp;&nbsp;<%= user_name %></p>
 	<% else %>
-		&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Hospital Name: </b><p>&nbsp;&nbsp;&nbsp;<%= @Recipients.first.teachingHospitalName %></p>
+		&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Hospital Name: </b><p>&nbsp;&nbsp;&nbsp;<%= @Recipients.teachingHospitalName %></p>
 	<% end %> 
-	<% address = @Recipients.first.businessAddress %>
-	<% address += " "+ @Recipients.first.city %>
-	<% address += " "+ @Recipients.first.state %>
-	<% address += " "+ @Recipients.first.zip %>
+	<% address = @Recipients.businessAddress %>
+	<% address += " "+ @Recipients.city %>
+	<% address += " "+ @Recipients.state %>
+	<% address += " "+ @Recipients.zip %>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Business Address: </b><p>&nbsp;&nbsp;&nbsp;<%= address %></p>
 
 	<script type="text/javascript">
@@ -168,7 +170,7 @@
 			</td>
 			<td>
 				<select name="RecipientType" id="RecipientType"  >
-					<% if  @Recipients.first.recipientType== "Physician" %>
+					<% if  @Recipients.userType== "Physician" %>
 						<option value="Physician" selected >Physician</option>
 						<option value="Hospital" >Hospital</option>
 					<% else %>
@@ -183,73 +185,10 @@
 		<table id="physician">
 			<tr>
 				<td>
-					Suffix: 
+					Name of Recipient (Physician):
 				</td>
 				<td>
-					<input type="text" name="Suffix" id="Suffix" value="<%= @Recipients.first.suffix %>" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					First Name: 
-				</td>
-				<td>
-					<input type="text" name="FirstName" id="FirstName" value="<%= @Recipients.first.physicianFirstName %>" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Middle Name:
-				</td>
-				<td>
-					<input type="text" name="MiddleName" id="MiddleName" value="<%= @Recipients.first.physicianMiddleName %>" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Last Name: 
-				</td>
-				<td>
-					<input type="text" name="LastName" id="LastName" value="<%= @Recipients.first.physicianLastName %>" />
-				</td>
-			</tr>
-			
-			<tr>
-				<td>
-					Business Address: 
-				</td>
-				<td>
-					<input type="text" name="address" id="address" value="<%= @Recipients.first.businessAddress %>" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					City: 
-				</td>
-				<td>
-					<input type="text" name="city" id="city" value="<%= @Recipients.first.city %>" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					State: 
-				</td>
-				<td>
-					<input type="text" name="State" id="State" value="<%= @Recipients.first.state %>" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Zip: 
-				</td>
-				<td>
-					<input type="text" name="zip" id="zip" value="<%= @Recipients.first.zip %>" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="hidden" id="ids" name="ids" value="<%= @Recipients.first.id %>" />
-					<input type="hidden" id="id" name="id" value="<%= @spends.id %>" />
+					<%= select_tag "RecID",options_from_collection_for_select(@physicians,'id','fullNamePhy'),:include_blank => true %>
 				</td>
 			</tr>
 			<tr>
@@ -258,53 +197,14 @@
 				</td>
 			</tr>
 		</table>
+		<tab</table>
 		<table id="hospital">
 			<tr>
-				
-			<tr>
 				<td>
-					Hospital: 
+					Name of Recipient (Hospital): 
 				</td>
 				<td>
-					<input type="text" name="Hospital" id="Hospital" value="<%= @Recipients.first.teachingHospitalName %>" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Business Address: 
-				</td>
-				<td>
-					<input type="text" name="address" id="address" value="<%= @Recipients.first.businessAddress %>" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					City: 
-				</td>
-				<td>
-					<input type="text" name="city" id="city" value="<%= @Recipients.first.city %>" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					State: 
-				</td>
-				<td>
-					<input type="text" name="State" id="State" value="<%= @Recipients.first.state %>" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Zip: 
-				</td>
-				<td>
-					<input type="text" name="zip" id="zip" value="<%= @Recipients.first.zip %>" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="hidden" id="ids" name="ids" value="<%= @Recipients.first.id %>" />
-					<input type="hidden" id="id" name="id" value="<%= @spends.id %>" />
+					<%= select_tag "RecID1",options_from_collection_for_select(@hospitals,'id',:teachingHospitalName),:include_blank => true %>
 				</td>
 			</tr>
 			<tr>
@@ -323,11 +223,13 @@
 <div class="box1">
 	<h2>
 		Spend Description
-		<span style="float:right">
-			<a  id="Open_Spends" style="color:blue;cursor:pointer;">
-				Edit
-			</a>
-		</span>
+		<% if current_user.userType == "Employee" %>
+			<span style="float:right">
+				<a  id="Open_Spends" style="color:blue;cursor:pointer;">
+					Edit
+				</a>
+			</span>
+		<% end %>
 	</h2>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Title: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.paymentName %></p>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Amount: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.totalAmount %></p>
@@ -359,6 +261,11 @@
 		$( "#dialog1" ).dialog();
 	}
 
+	$("#spend_date").datepicker({
+			buttonImageOnly:true,
+			buttonImage: 'calendar.jpg',
+			dateFormat: 'mm-dd-yy'
+		});
 
 	</script>
 	<div id="dialog1" title="Spends Information" style="font-size:12px;" hidden >
@@ -429,11 +336,13 @@
 <div class="box1">
 	<h2>
 		Products
-		<span style="float:right">
-			<a id="Open_Products" style="color:blue;cursor:pointer">
-				Edit
-			</a>
-		</span>
+		<% if current_user.userType == "Employee" %>
+			<span style="float:right">
+				<a id="Open_Products" style="color:blue;cursor:pointer">
+					Edit
+				</a>
+			</span>
+		<% end %>
 	</h2>
 	<% @Products.each_with_index do |p| %>
 	<% if p.nameofDrugorBiological.blank? %>
@@ -580,11 +489,13 @@
 <div class="box1">
 	<h2>
 		3rd Party Payee
-		<span style="float:right">
-			<a id="Open_thirdParty" style="color:blue;cursor:pointer;">
-				Edit
-			</a>
-		</span>
+		<% if current_user.userType == "Employee" %>
+			<span style="float:right">
+				<a id="Open_thirdParty" style="color:blue;cursor:pointer;">
+					Edit
+				</a>
+			</span>
+		<% end %>
 	</h2>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">3rd Party Indicatror: </b><p>&nbsp;&nbsp;&nbsp;<%= @ThirdParty.first.ThirdPartyPayemntRecipientIndicator %></p>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Name of 3rd Party Entity: </b><p>&nbsp;&nbsp;&nbsp;<%= @ThirdParty.first.NameofThirdParty %></p>
@@ -684,9 +595,11 @@
 	</div>
 </div>
 
-<a id="Open_Dispute" style="background-color:#181818;border-radius:10px; display:inline-block; color: white; font-family: Raleway; font-size:12px; padding:8px 18px; text-decoration: none; margin-top: 15px; margin-bottom: 15px; text-align:center;cursor:pointer;">
-				Raise a Dispute
-</a>
+<% if current_user.userType == "Physician" or current_user.userType == "Hospital" %>
+	<a id="Open_Dispute" style="background-color:#181818;border-radius:10px; display:inline-block; color: white; font-family: Raleway; font-size:12px; padding:8px 18px; text-decoration: none; margin-top: 15px; margin-bottom: 15px; text-align:center;cursor:pointer;">
+		Raise a Dispute
+	</a>
+<% end %>
 
 <script type="text/javascript">
 		var el=document.getElementById("Open_Dispute");
@@ -706,6 +619,8 @@
 			});
 		}
 </script>
+
+
 
 <div id="dispute_dialog" title="Dispute" style="font-size:12px;" hidden >
 	<%= form_tag({controller: "disputes",:action => :create, :remote => true}) do |f| %>
@@ -727,8 +642,7 @@
 					Description:
 				</td>
 				<td>
-					<textarea id="Description" name="Description" rows="3" cols="28">
-					</textarea>
+					<textarea id="Description" name="Description" rows="3" cols="28"></textarea>
 				</td>
 			</tr>
 			<tr>
@@ -736,7 +650,7 @@
 					Date:
 				</td>
 				<td>
-					<input type="text" name="DisputeDate" id="DisputeDAte" />
+					<input type="text" name="DisputeDate" id="DisputeDate" />
 				</td>
 			</tr>
 			<tr>
@@ -751,3 +665,11 @@
 		</table>
 	<% end %>
 </div>
+<script type="text/javascript">
+	$("#DisputeDate").datepicker({
+			buttonImageOnly:true,
+			buttonImage: 'calendar.jpg',
+			dateFormat: 'mm-dd-yy'
+			
+		});
+</script>

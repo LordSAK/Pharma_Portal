@@ -2,52 +2,266 @@
 <h1 class="title">Sign up</h1>
 
 
-    <%= form_for(@user) do |f| %>
-    	<%= render 'shared/error_messages' %>
-      <table align="center" width="100%">
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var Privileges = jQuery('#userType');
+  var select = this.value;
+  if(Privileges.val() == 'Physician')
+  {
+      $('#physician').show();
+      $('#hospital').hide();
+      $('#employee').hide();
+  }
+  else if(Privileges.val() == 'Hospital')
+  {
+      $('#physician').hide(); // hide div if value is not "custom"
+      $('#hospital').show();
+      $('#employee').hide();
+  }
+  else
+  {
+      $('#physician').hide();
+      $('#hospital').hide();
+      $('#employee').show();
+  }
+  Privileges.change(function () {
+
+    if ($(this).val() == 'Physician') {
+        $('#physician').show();
+        $('#hospital').hide();
+        $('#employee').hide();
+      }
+      else if ($(this).val() == 'Hospital') {
+        $('#physician').hide(); // hide div if value is not "custom"
+        $('#hospital').show();
+        $('#employee').hide();
+      }
+      else {
+        $('#physician').hide();
+        $('#hospital').hide();
+        $('#employee').show();
+      }
+  });
+});
+</script>
+
+
+
+    <%= form_tag({controller: :users,:action => :create}) do |f| %>
+
+      <table align="center" boder="2" width="100%">
         <tr>
           <td align="center">
-            <select ID="DropDownList1" runat="server">
+            <select ID="userType" name="userType">
+              <option Text="Physician" Value="Physician">Physician</option>
+              <option Text="Hospital" Value="Hospital">Hospital</option>
+              <option Text="Employee" Value="Employee">Employee</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+      <table id="employee" align="center" width="100%">
+        <tr>
+          <td align="center">
+            <select ID="DropDownList1" name="suffix1">
               <option Text="Title">Title</option>
-              <option Text="Mr." Value="1">Mr.</option>
-              <option Text="Ms." Value="2">Ms.</option>
-              <option Text="Dr." Value="3">Dr.</option>
+              <option Text="Mr." Value="Mr.">Mr.</option>
+              <option Text="Ms." Value="Ms.">Ms.</option>
+              <option Text="Dr." Value="Dr.">Dr.</option>
             </select>
           </td>
         </tr>
         <tr>
           <td align="center">
-            <%= f.text_field :FirstName,:placeholder => 'First Name' %>
+            <%= text_field_tag :FirstName,nil,:placeholder => 'First Name' %>
           </td>
         </tr>
         <tr>
           <td align="center">
-            <%= f.text_field :LastName,:placeholder => 'Last Name' %>
+            <%= text_field_tag :LastName,nil,:placeholder =>'Last Name' %>
           </td>
         </tr>
         <tr>
           <td align="center">      
             
-            <%= f.text_field :email, :placeholder => 'Email' %>
+            <%= text_field_tag :email2,nil,:placeholder => 'Email' %>
           </td>
         </tr>
         <tr>
           <td align="center">
             
-            <%= f.password_field :password, :placeholder => 'Password' %>
+            <%= password_field_tag :password2,nil,:placeholder => 'Password' %>
           </td>
         </tr>
         <tr>
           <td align="center">
             
-            <%= f.password_field :password_confirmation, :placeholder => 'Re-Enter Password' %>
+            <%= password_field_tag :password_confirmation2,nil,:placeholder => 'Re-Enter Password' %>
+          </td>
+        </tr>
+      </table>
+
+      <table id="hospital" align="center" width="100%">
+        <tr>
+          <td align="center">
+            <%= text_field_tag :teachingHospitalName,nil,:placeholder =>'Hospital Name'%>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <%= text_field_tag :teachingHospitalTaxIDNumber,nil,:placeholder => 'Tax ID' %>
+        <tr>
+          <td align="center">      
+            
+            <%= text_field_tag :email1,nil,:placeholder => 'Email' %>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            
+            <%= password_field_tag :password1,nil,:placeholder => 'Password' %>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            
+            <%= password_field_tag :password_confirmation1,nil,:placeholder => 'Re-Enter Password' %>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            
+            <%= text_field_tag :businessAddress1,nil,:placeholder => 'Address' %>
+          </td>
+        </tr><tr>
+          <td align="center">
+            
+            <%= text_field_tag :city1,nil,:placeholder => 'City' %>
+          </td>
+        </tr><tr>
+          <td align="center">
+            
+            <%= text_field_tag :state1,nil,:placeholder =>  'State' %>
+          </td>
+        </tr><tr>
+          <td align="center">
+            
+            <%= text_field_tag :zip1,nil,:placeholder => 'Zip' %>
+          </td>
+        </tr><tr>
+          <td align="center">
+            
+            <%= text_field_tag :country1,nil,:placeholder =>'Country' %>
+          </td>
+        </tr>
+      </table>
+      <table id="physician" align="center" width="100%">
+        <tr>
+          <td align="center">
+            <select ID="DropDownList1" name="suffix">
+              <option Text="Title">Title</option>
+              <option Text="Mr." Value="Mr.">Mr.</option>
+              <option Text="Ms." Value="Ms.">Ms.</option>
+              <option Text="Dr." Value="Dr.">Dr.</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <%= text_field_tag :physicianFirstName,nil,:placeholder => 'First Name' %>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <%= text_field_tag :physicianMiddleName,nil,:placeholder => 'Middle Name' %>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            <%= text_field_tag :physicianLastName,nil,:placeholder => 'Last Name' %>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">      
+            
+            <%= text_field_tag :email,nil,:placeholder => 'Email' %>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            
+            <%= password_field_tag :password,nil,:placeholder =>  'Password' %>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            
+            <%= password_field_tag :password_confirmation,nil,:placeholder =>  'Re-Enter Password' %>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            
+            <%= text_field_tag :businessAddress,nil,:placeholder =>  'Address' %>
+          </td>
+        </tr><tr>
+          <td align="center">
+            
+            <%= text_field_tag :city,nil,:placeholder => 'City' %>
+          </td>
+        </tr><tr>
+          <td align="center">
+            
+            <%= text_field_tag :state,nil,:placeholder => 'State' %>
+          </td>
+        </tr><tr>
+          <td align="center">
+            
+            <%= text_field_tag :zip,nil,:placeholder => 'Zip' %>
+          </td>
+        </tr><tr>
+          <td align="center">
+            
+            <%= text_field_tag :country,nil,:placeholder => 'Country' %>
+          </td>
+        </tr>
+
+        <tr>
+          <td align="center">
+            
+            <%= text_field_tag :physicianPrimaryType,nil,:placeholder => 'Primary Type' %>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            
+            <%= text_field_tag :physicianNPI,nil,:placeholder => 'NPI' %>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            
+            <%= text_field_tag :physicianSpecialty,nil,:placeholder => 'Specialty' %>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            
+            <%= text_field_tag :physicianLicenseState,nil,:placeholder => 'License State' %>
+          </td>
+        </tr>
+        <tr>
+          <td align="center">
+            
+            <%= text_field_tag :physicianLicenseNumber,nil,:placeholder => 'License Number' %>
           </td>
         </tr>
       </table>
  <table width="84%">
     <tr>
       <td align="center">
-      <%= f.submit "Sign up", :style => "background-color:#181818;border-radius:15px; display:inline-block; color: white; font-family: Raleway; font-size:15px; padding:14px 30px; text-decoration: none; margin-left: 20%; margin-top: 15px; margin-bottom: 15px; text-align:center;" %>
+      <%= submit_tag "Sign up", :style => "background-color:#181818;border-radius:15px; display:inline-block; color: white; font-family: Raleway; font-size:15px; padding:14px 30px; text-decoration: none; margin-left: 20%; margin-top: 15px; margin-bottom: 15px; text-align:center;" %>
     </td>
   </tr>
 </table>

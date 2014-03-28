@@ -10,13 +10,13 @@
 #
 
 class User < ActiveRecord::Base
-	before_save { self.email = email.downcase }
+	#before_save { self.email = email.downcase }
 	before_create :create_remember_token
-	validates :FirstName, presence: true, length: { maximum: 50 }
+	#validates :FirstName, presence: true, length: { maximum: 50 }
 	VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 	validates :email, presence:   true,
-                    format:     { with: VALID_EMAIL_REGEX },
-                    uniqueness: { case_sensitive: false }
+                    format:     { with: VALID_EMAIL_REGEX }
+     #               uniqueness: { case_sensitive: false }
     has_secure_password
     validates :password, length: { minimum: 6 }
 
@@ -26,6 +26,14 @@ class User < ActiveRecord::Base
 
     def User.encrypt(token)
     	Digest::SHA1.hexdigest(token.to_s)
+    end
+
+    def fullnameEmployee
+        "#{FirstName} #{LastName}"
+    end
+
+    def fullNamePhy
+        "#{self.suffix} #{self.physicianFirstName} #{self.physicianMiddleName} #{self.physicianLastName}"
     end
 
     private

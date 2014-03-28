@@ -13,14 +13,55 @@ class UsersController < ApplicationController
 	end
 
 	def create
-		@user = User.new(user_params)
-		if @user.save
-			sign_in @user
-			#flash[:success] = "Welcome to the Pharma Portal!"
-			redirect_to '/dashboard'
+		if params[:userType] == "Physician"
+			@user=User.new(:userType => params[:userType], 
+				:physicianFirstName => params[:physicianFirstName], 
+				:physicianMiddleName => params[:physicianMiddleName],
+				:physicianLastName => params[:physicianLastName], 
+				:suffix => params[:suffix], 
+				:businessAddress => params[:businessAddress], 
+				:city => params[:city],	:state => params[:state], 
+				:zip => params[:zip], :country => params[:country], 
+				:physicianPrimaryType => params[:physicianPrimaryType], 
+				:physicianNPI => params[:physicianNPI], 
+				:physicianSpecialty => params[:physicianSpecialty], 
+				:physicianLicenseState => params[:physicianLicenseState], 
+				:physicianLicenseNumber => params[:physicianLicenseNumber],
+				:password => params[:password],
+				:password_confirmation => params[:password_confirmation],
+				:email => params[:email])
+			@user.save
+			puts @user.errors.full_messages
+		elsif params[:userType] == "Hospital"
+			@user=User.new(:userType => params[:userType],
+				:teachingHospitalName => params[:teachingHospitalName],
+				:teachingHospitalTaxIDNumber => params[:teachingHospitalTaxIDNumber],
+				:email => params[:email1],
+				:password => params[:password1],
+				:password_confirmation => params[:password_confirmation1],
+				:businessAddress => params[:businessAddress1], 
+				:city => params[:city1],	:state => params[:state1], 
+				:zip => params[:zip1], :country => params[:country1])
+			@user.save
+			puts @user.errors.full_messages
 		else
-			render 'new'
+			@user=User.new(:userType => params[:userType],
+				:suffix => params[:suffix1], 
+				:FirstName => params[:FirstName],
+				:LastName => params[:LastName],
+				:email => params[:email2],
+				:password => params[:password2],
+				:password_confirmation => params[:password_confirmation2])
+			@user.save
 		end
+		#@user = User.new(user_params)
+		#if @user.save
+		#	sign_in @user
+			#flash[:success] = "Welcome to the Pharma Portal!"
+		#	redirect_to '/dashboard'
+		#else
+			render 'new'
+		#end
 	end
 
 	private

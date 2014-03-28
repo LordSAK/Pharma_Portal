@@ -127,111 +127,22 @@ $(document).ready(function(){
 		<table id="physician">
 			<tr>
 				<td>
-					Suffix: 
+					Name of Recipient (Physician):
 				</td>
 				<td>
-					<input type="text" name="Suffix" id="Suffix"  />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					First Name: 
-				</td>
-				<td>
-					<input type="text" name="FirstName" id="FirstName" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Middle Name:
-				</td>
-				<td>
-					<input type="text" name="MiddleName" id="MiddleName"  />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Last Name: 
-				</td>
-				<td>
-					<input type="text" name="LastName" id="LastName"  />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Business Address: 
-				</td>
-				<td>
-					<input type="text" name="address" id="address"  />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					City: 
-				</td>
-				<td>
-					<input type="text" name="city" id="city"  />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					State: 
-				</td>
-				<td>
-					<input type="text" name="State" id="State" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Zip: 
-				</td>
-				<td>
-					<input type="text" name="zip" id="zip"  />
+					<%= select_tag "RecID",options_from_collection_for_select(@physicians,'id','fullNamePhy'),:include_blank => true %>
 				</td>
 			</tr>
 		</table>
 		<table id="hospital">
 			<tr>
 				<td>
-					Hospital: 
+					Name of Recipient (Hospital): 
 				</td>
 				<td>
-					<input type="text" name="Hospital" id="Hospital"  />
+					<%= select_tag "RecID1",options_from_collection_for_select(@hospitals,'id',:teachingHospitalName),:include_blank => true %>
 				</td>
 			</tr>
-			<tr>
-				<td>
-					Business Address: 
-				</td>
-				<td>
-					<input type="text" name="address" id="address"  />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					City: 
-				</td>
-				<td>
-					<input type="text" name="city" id="city" />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					State: 
-				</td>
-				<td>
-					<input type="text" name="State" id="State"  />
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Zip: 
-				</td>
-				<td>
-					<input type="text" name="zip" id="zip"  />
-				</td>
-			</tr>
-
 		</table>
 	</div>
 
