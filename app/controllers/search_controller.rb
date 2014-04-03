@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
   def Search
   	start=Date.strptime params[:Start], '%m-%d-%Y' unless params[:Start]==""
-	  ends=Date.strptime params[:End], '%m-%d-%Y' unless params[:End].nil==""
+	  ends=Date.strptime params[:End], '%m-%d-%Y' unless params[:End]==""
   	userType=params[:UserType] unless params[:UserType]=="All"
   	state=params[:State] unless params[:State]=="All"
   	activity=params[:ActivityType] unless params[:ActivityType]=="All"
