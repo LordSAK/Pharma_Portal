@@ -1,0 +1,58 @@
+<table class="tablestyle" width="100%">
+	<tr>
+		<th>
+			Case Id
+		</th>
+		<th>
+			Spend Id
+		</th>
+		<th>
+			status
+		</th>
+		<th>
+			Description
+		</th>
+		<th>
+			Created
+		</th>
+		<th>
+
+		</th>
+		
+	</tr>
+	<% if @dispute.nil? %>
+	<tr>
+		<td>
+			No Dispute is raised.
+		</td>
+	</tr>
+	<% else %>
+		<% @dispute.each do |d| %>
+		<tr>
+			<td>
+				<!-- #link_to d.id,d, style: "color: #0099cc;font-weight:bold" -->
+				<%= d.id %>
+			</td>
+			<td>
+				<%= link_to d.AmountID, transfer_of_value_path(d.AmountID), style: "color:#0099cc;font-weight:bold" %>
+			</td>
+			<td>
+				<%= d.Status %>
+			</td>
+			<td>
+				<%= d.Description %>
+			</td>
+			<td>
+				<% if !d.DisputeDate.nil? %>
+				<%= d.DisputeDate.to_time.strftime('%b %d,%Y') %>
+				<% end %>
+			</td>
+			<td>
+				<% if d.Status == "Dispute" %>
+					<%= link_to "Correct Spend",edit_transfer_of_value_path(d.AmountID), style: "color:#0099cc;font-weight:bold" %>
+				<% end %>
+			</td>			
+		</tr>
+		<% end %>
+	<% end %>
+</table>

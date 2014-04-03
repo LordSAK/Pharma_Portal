@@ -1,35 +1,49 @@
 <%= link_to "Create New Spend", new_transfer_of_value_path, :style => "background-color:#181818;border-radius:10px; display:inline-block; color: white; font-family: Raleway; font-size:12px; padding:8px 18px; text-decoration: none; margin-top: 15px; margin-bottom: 15px; text-align:center;" %>
 
-
+<form action='<%= search_path %>' method='get'>
 <div class="box1">
 	<h2>Spends</h2>
 	<table>
 		<tr>
 			<td>
-				Start Date <input type="text" id="TxtBx_StartDate" style="width:65px">
+				Start Date <input type="text" name="Start" id="TxtBx_StartDate" style="width:65px">
 			</td>
 			<td>
-				&nbsp;&nbsp;&nbsp;End Date <input type="text" id="TxtBx_EndDate" style="width:65px">
+				&nbsp;&nbsp;&nbsp;End Date <input type="text" name="End" id="TxtBx_EndDate" style="width:65px">
 			</td>
 		</tr>
 	</table>
+	<script type="text/javascript">
+		$('#TxtBx_StartDate').datepicker({
+			buttonImageOnly: true,
+			buttonImage: 'calendar.jpg',
+			dateFormat: 'mm-dd-yy'
+		});
+		$('#TxtBx_EndDate').datepicker({
+			buttonImageOnly: true,
+			buttonImage: 'calendar.jpg',
+			dateFormat: 'mm-dd-yy'
+		});
+	</script>
 	<table>
 		<tr>
-			<td>
+			<!--<td>
 				Recipent Category
 				<select>
-					<option value="All">All</option>
+
 				</select>
-			</td>
+			</td>-->
 			<td>
 				&nbsp;&nbsp;&nbsp;Recipent Type
-				<select>
+				<select name='UserType'>
 					<option value="All">All</option>
+					<option value="Physician">Physician</option>
+					<option value="Hospital">Hospital</option>
 				</select>
 			</td>
 			<td>
 				&nbsp;&nbsp;&nbsp;Recipent State
-				<select>
+				<select name="State">
 					<option value="All">All</option>
 				</select>
 			</td>
@@ -39,7 +53,7 @@
 		<tr>
 			<td>
 				Spend Activity Type
-				<select>
+				<select name="ActivityType">
 					<option value="All">All</option>
 					<option value="Call">Call</option>
 					<option value="Advisory Board">Advisory Board</option>
@@ -47,7 +61,7 @@
 			</td>
 			<td>
 				&nbsp;&nbsp;&nbsp;Spend Detail Type
-				<select>
+				<select name="DetailType">
 					<option value="All">All</option>
 					<option value="Lunch">Lunch</option>
 					<option value="Travel">Travel</option>
@@ -62,7 +76,7 @@
 		<tr>
 			<td>
 				Business Purpose
-				<select>
+				<select name="NatureOfPayment">
 					<option value="All">All</option>
 					<option vlaue="Promotion">Promotion</option>
 				</select>
@@ -74,13 +88,14 @@
 	<table>
 		<tr>
 			<td>
-				<input type="button" id="submit" value="Filter" style=" width:40px;height:35px;background-color:#181818;border-radius:5px; display:inline-block; color: white; font-size:10px;  text-decoration: none; margin-left: 5%; margin-top: 15px; margin-bottom: 15px; text-align:center;">
+				<input type="submit" value="Filter" style=" width:40px;height:35px;background-color:#181818;border-radius:5px; display:inline-block; color: white; font-size:10px;  text-decoration: none; margin-left: 5%; margin-top: 15px; margin-bottom: 15px; text-align:center;">
 			</td>
 			<td>
 			</td>
 		</tr>
 	</table>
 </div>
+</form>
 <br/>
 <table class="tablestyle" width="100%">
 	<tr>

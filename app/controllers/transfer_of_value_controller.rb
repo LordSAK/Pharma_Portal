@@ -7,7 +7,7 @@ class TransferOfValueController < ApplicationController
     end
 
     def create
-        @spen=TransferOfValue.new(:paymentName => params[:title],:totalAmount => params[:amount] ,:NatureofPayment => params[:purpose], :numberofPayment => params[:num_of_pay],:DateofPayment => params[:spend_date])
+        @spen=TransferOfValue.new(:paymentName => params[:title],:totalAmount => params[:amount] ,:NatureofPayment => params[:purpose], :numberofPayment => params[:num_of_pay],:DateofPayment => params[:spend_date],:ActivityType => params[:ActivityType],:DetailType => params[:DetailType])
         @spen.save
         @spend_id=TransferOfValue.last.id
 
@@ -59,6 +59,8 @@ class TransferOfValueController < ApplicationController
         @spen.update_attribute(:NatureofPayment,params[:purpose])
         @spen.update_attribute(:numberofPayment,params[:num_of_pay])
         @spen.update_attribute(:DateofPayment,params[:spend_date])
+        @spen.update_attribute(:ActivityType,params[:ActivityType])
+        @spen.update_attribute(:DetailType,params[:DetailType])
 
         @party=GeneralRecord.find(params[:idThird])
 
@@ -153,6 +155,8 @@ class TransferOfValueController < ApplicationController
         @spen.update_attribute(:NatureofPayment,params[:purpose])
         @spen.update_attribute(:numberofPayment,params[:num_of_pay])
         @spen.update_attribute(:DateofPayment,params[:spend_date])
+        @spen.update_attribute(:ActivityType,params[:ActivityType])
+        @spen.update_attribute(:DetailType,params[:DetailType])
         
         redirect_to transfer_of_value_path(params[:id])
     end

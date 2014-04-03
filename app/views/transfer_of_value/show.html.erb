@@ -236,6 +236,9 @@
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Business Purpose: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.NatureofPayment %></p>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Number of Payments: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.numberofPayment %></p>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Spend Date: </b><p>&nbsp;&nbsp;&nbsp;<% if !@spends.DateofPayment.nil? %><%= @spends.DateofPayment.to_time.strftime('%b %d,%Y') %><% end %></p>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Spend Activity Type: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.ActivityType %></p>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Spend Detail Type: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.DetailType %></p>
+
 
 	<script type="text/javascript">
 	$(function(){
@@ -313,6 +316,22 @@
 						<% else %>
 							<input type="text" name="spend_date" id="spend_date" value="" />
 						<% end %>
+					</td>
+				<tr>
+
+					<td>
+						Spend Activity Type:
+					</td>
+					<td>
+						<input type="text" name="ActivityType" id="ActivityType" value='<%= @spends.ActivityType %>' />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Spend Details Type:
+					</td>
+					<td>
+						<input type="text" name="DetailType" id="DetailType" value='<%= @spends.DetailType %>' />
 					</td>
 				</tr>
 				<tr>

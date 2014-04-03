@@ -46,6 +46,22 @@
 					<% end %>
 				</td>
 			</tr>
+			<tr>
+				<td>
+					Spend Activity Type:
+				</td>
+				<td>
+					<input type="text" name="ActivityType" id="ActivityType" value='<%= @spends.ActivityType %>' />
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Spend Detail Type:
+				</td>
+				<td>
+					<input type="text" name="DetailType" id="DetailType" value='<%= @spends.DetailType %>' />
+				</td>
+			</tr>
 			<tr> 
 				<td>
 					<input type="hidden" id="idSpen" name="idSpen" value="<%= @spends.id %>" />

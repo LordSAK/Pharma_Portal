@@ -1,0 +1,51 @@
+<table class="tablestyle" width="100%">
+	<tr>
+		<th>
+			Spend Id
+		</th>
+		
+		<th>
+			Transfer of Value Date
+		</th>
+		<th>
+			Amount
+		</th>
+		<th>
+			Number of Payments
+		</th>
+		<th>
+			Nature of Payment
+		</th>
+		
+	</tr>
+	<% if @result.nil? %>
+	<tr>
+		<td>
+			No Spends found.
+		</td>
+	</tr>
+	<% else %>
+		<% @result.each do |s| %>
+		<tr>
+			<td>
+				<%= link_to s.id,s, style: "color: #0099cc;font-weight:bold" %>
+			</td>
+			<td>
+				<% if !s.DateofPayment.nil? %>
+				<%= s.DateofPayment.to_time.strftime('%b %d,%Y') %>
+				<% end %>
+			</td>
+			<td>
+				<%= s.totalAmount %>
+			</td>
+			<td>
+				<%= s.numberofPayment %>
+			</td>
+			<td>
+				<%= s.NatureofPayment %>
+			</td>
+			
+		</tr>
+		<% end %>
+	<% end %>
+</table>

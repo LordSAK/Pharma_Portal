@@ -1,4 +1,5 @@
 PharmaPortal::Application.routes.draw do
+  get "search/Search"
   #get "transfer_of_value/edit"
   #match "/transfer_of_value", to: 'transfer_of_value#show',via: 'get'
   #get "transfer_of_value/new"
@@ -24,6 +25,9 @@ PharmaPortal::Application.routes.draw do
   match '/party',to: 'transfer_of_value#party', :via => :post
   match '/product', to: 'transfer_of_value#product', :via => :post
   match '/updates',to: 'transfer_of_value#updates',:via => :post
+
+  match "/search", to: 'search#Search', :as => :search, :via => :get
+  match "/searchDisputes", to: 'search#SearchDisputes',:as => :searchDisputes,:via => :get
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
