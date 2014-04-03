@@ -1,51 +1,136 @@
-<table class="tablestyle" width="100%">
+<table>
 	<tr>
-		<th>
-			Spend Id
-		</th>
-		
-		<th>
-			Transfer of Value Date
-		</th>
-		<th>
-			Amount
-		</th>
-		<th>
-			Number of Payments
-		</th>
-		<th>
-			Nature of Payment
-		</th>
-		
-	</tr>
-	<% if @result.nil? %>
-	<tr>
-		<td>
-			No Spends found.
+		<td width="80%" style ="vertical-align:top">
+			<h2>Results</h2>
+			<table class="tablestyle" >
+				<tr>
+					<th>
+						Spend Id
+					</th>
+					<th>
+						Transfer of Value Date
+					</th>
+					<th>
+						Amount
+					</th>
+					<th>
+						Number of Payments
+					</th>
+					<th>
+						Nature of Payment
+					</th>
+				</tr>
+				<% if @result.nil? %>
+				<tr>
+					<td>
+						No Spends found.
+					</td>
+				</tr>
+				<% else %>
+					<% @result.each do |s| %>
+						<tr>
+							<td>
+								<%= link_to s.id,s, style: "color: #0099cc;font-weight:bold" %>
+							</td>
+							<td>
+								<% if !s.DateofPayment.nil? %>
+									<%= s.DateofPayment.to_time.strftime('%b %d,%Y') %>
+								<% end %>
+							</td>
+							<td>
+								<%= s.totalAmount %>
+							</td>
+							<td>
+								<%= s.numberofPayment %>
+							</td>
+							<td>
+								<%= s.NatureofPayment %>
+							</td>
+						</tr>
+					<% end %>
+				<% end %>
+			</table>
+		</td>
+		<td width="20%">
+			<form action='<%= search_path %>' method='get'>
+			<div class="box1">
+			<h2>Filter</h2>
+			<table >
+				<tr width="100%">
+					<td>
+						Start Date <input type="text" name="Start" id="TxtBx_StartDate" style="width:65px" value="<%= @start %>">
+					</td>
+					<td>
+						End Date <input type="text" name="End" id="TxtBx_EndDate" style="width:65px" value="<%= @ends %>">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+				</tr>
+				<tr width="100%">
+					<td>
+						<br/>
+						<hr/>
+						Recipent Type
+						<%= select_tag "userType", options_for_select(["All","Physician","Hospital"],@userType) %>
+					</td>
+				</tr>
+				<tr width="100%">
+					<td>
+						<br/>
+						<hr/>
+						Recipent State
+						<%= select_tag "State", options_for_select(["All"], @state) %>
+					</td>
+				</tr>
+				<tr width="100%">
+					<td>
+						<br/>
+						<hr/>
+						Spend Activity Type
+						<%= select_tag "ActivityType", options_for_select(["All","Call","Advisory Board"], @activity) %>
+					</td>
+				</tr>
+				<tr width="100%">
+					<td>
+						<br/>
+						<hr/>
+						Spend Detail Type
+						<%= select_tag "DetailType", options_for_select(["All","Lunch","Travel","Souvenir","Meal","Contracted Fee"], @detail) %>
+					</td>
+				</tr>
+				<tr width="100%">
+					<td>
+						<br/>
+						<hr/>
+						Business Purpose
+						<%= select_tag "NatureOfPayment", options_for_select(["All","Promotion"],@nature),{:onchange=>'$(this.form).submit();' } %>
+					</td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td>
+						<input type="submit" value="Filter" style=" width:40px;height:35px;background-color:#181818;border-radius:5px; display:inline-block; color: white; font-size:10px;  text-decoration: none; margin-left: 5%; margin-top: 15px; margin-bottom: 15px; text-align:center;">
+					</td>
+					<td>
+					</td>
+				</tr>
+			</table>
+			</form>
 		</td>
 	</tr>
-	<% else %>
-		<% @result.each do |s| %>
-		<tr>
-			<td>
-				<%= link_to s.id,s, style: "color: #0099cc;font-weight:bold" %>
-			</td>
-			<td>
-				<% if !s.DateofPayment.nil? %>
-				<%= s.DateofPayment.to_time.strftime('%b %d,%Y') %>
-				<% end %>
-			</td>
-			<td>
-				<%= s.totalAmount %>
-			</td>
-			<td>
-				<%= s.numberofPayment %>
-			</td>
-			<td>
-				<%= s.NatureofPayment %>
-			</td>
-			
-		</tr>
-		<% end %>
-	<% end %>
 </table>
+<script type="text/javascript">
+	$('#TxtBx_StartDate').datepicker({
+		buttonImageOnly: true,
+		buttonImage: 'calendar.jpg',
+		dateFormat: 'mm-dd-yy'
+	});
+	$('#TxtBx_EndDate').datepicker({
+		buttonImageOnly: true,
+		buttonImage: 'calendar.jpg',
+		dateFormat: 'mm-dd-yy'
+	});
+</script>

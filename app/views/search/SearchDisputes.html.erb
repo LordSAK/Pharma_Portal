@@ -1,58 +1,116 @@
-<table class="tablestyle" width="100%">
+<table>
 	<tr>
-		<th>
-			Case Id
-		</th>
-		<th>
-			Spend Id
-		</th>
-		<th>
-			status
-		</th>
-		<th>
-			Description
-		</th>
-		<th>
-			Created
-		</th>
-		<th>
-
-		</th>
-		
-	</tr>
-	<% if @dispute.nil? %>
-	<tr>
-		<td>
-			No Dispute is raised.
+		<td width="80%" style ="vertical-align:top">
+			<h2>Results</h2>
+			<table class="tablestyle" >
+				<tr>
+					<th>
+						Case Id
+					</th>
+					<th>
+						Spend Id
+					</th>
+					<th>
+						status
+					</th>
+					<th>
+						Description
+					</th>
+					<th>
+						Created
+					</th>
+					<th>
+					</th>		
+				</tr>
+				<% if @dispute.nil? %>
+				<tr>
+					<td>
+						No Dispute is raised.
+					</td>
+				</tr>
+				<% else %>
+					<% @dispute.each do |d| %>
+					<tr>
+						<td>
+							<%= d.id %>
+						</td>
+						<td>
+							<%= link_to d.AmountID, transfer_of_value_path(d.AmountID), style: "color:#0099cc;font-weight:bold" %>
+						</td>
+						<td>
+							<%= d.Status %>
+						</td>
+						<td>
+							<%= d.Description %>
+						</td>
+						<td>
+							<% if !d.DisputeDate.nil? %>
+								<%= d.DisputeDate.to_time.strftime('%b %d,%Y') %>
+							<% end %>
+						</td>
+						<td width="20%">
+							<% if d.Status == "Dispute" %>
+								<%= link_to "Correct Spend",edit_transfer_of_value_path(d.AmountID), style: "color:#0099cc;font-weight:bold" %>
+							<% end %>
+						</td>			
+					</tr>
+					<% end %>
+				<% end %>
+			</table>
+		</td>
+		<td width="20%">
+			<form action='<%= searchDisputes_path %>' method='get'>
+				<div class="box1">
+				<h2>Filter</h2>
+				<table >
+					<tr width="100%">
+						
+					</tr>
+						<td>
+							Start Date <input type="text" name="Start" id="TxtBx_StartDate" style="width:65px" value="<%= @start %>">
+						</td>
+						<td>
+							End Date <input type="text" name="End" id="TxtBx_EndDate" style="width:65px" value="<%= @ends %>">
+						</td>
+					<tr>
+						<td>
+							<br/>
+							<hr/>
+							Case Status
+							<%= select_tag "status", options_for_select(["Open","Dispute","Resolved"],@status) %>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<br/>
+							<hr/>							
+							Exception
+							<%= select_tag "Exception", options_for_select(["All"],@exceptions) %>
+						</td>
+					</tr>
+				</table>
+				<table>
+					<tr>
+						<td>
+							<input type="submit" value="Filter" style=" width:40px;height:35px;background-color:#181818;border-radius:5px; display:inline-block; color: white; font-size:10px;  text-decoration: none; margin-left: 5%; margin-top: 15px; margin-bottom: 15px; text-align:center;">
+						</td>
+						<td>
+						</td>
+					</tr>
+				</table>
+			</form>
 		</td>
 	</tr>
-	<% else %>
-		<% @dispute.each do |d| %>
-		<tr>
-			<td>
-				<!-- #link_to d.id,d, style: "color: #0099cc;font-weight:bold" -->
-				<%= d.id %>
-			</td>
-			<td>
-				<%= link_to d.AmountID, transfer_of_value_path(d.AmountID), style: "color:#0099cc;font-weight:bold" %>
-			</td>
-			<td>
-				<%= d.Status %>
-			</td>
-			<td>
-				<%= d.Description %>
-			</td>
-			<td>
-				<% if !d.DisputeDate.nil? %>
-				<%= d.DisputeDate.to_time.strftime('%b %d,%Y') %>
-				<% end %>
-			</td>
-			<td>
-				<% if d.Status == "Dispute" %>
-					<%= link_to "Correct Spend",edit_transfer_of_value_path(d.AmountID), style: "color:#0099cc;font-weight:bold" %>
-				<% end %>
-			</td>			
-		</tr>
-		<% end %>
-	<% end %>
 </table>
+<script type="text/javascript">
+	$('#TxtBx_StartDate').datepicker({
+		buttonImageOnly: true,
+		buttonImage: 'calendar.jpg',
+		dateFormat: 'mm-dd-yy'
+	});
+	$('#TxtBx_EndDate').datepicker({
+		buttonImageOnly: true,
+		buttonImage: 'calendar.jpg',
+		dateFormat: 'mm-dd-yy'
+	});
+</script>
