@@ -198,7 +198,7 @@ $(document).ready(function(){
 					Spend Activity Type:
 				</td>
 				<td>
-					<input type="text" name="ActivityType" id="ActivityType" />
+					<%= select_tag "ActivityType", options_for_select(["All","Call","Advisory Board"]) %>
 				</td>
 			</tr>
 			<tr>
@@ -206,7 +206,7 @@ $(document).ready(function(){
 					Spend Details Type:
 				</td>
 				<td>
-					<input type="text" name="DetailType" id="DetailType" />
+					<%= select_tag "DetailType", options_for_select(["All","Lunch","Travel","Souvenir","Meal","Contracted Fee"]) %>
 				</td>
 			</tr>
 		</table>

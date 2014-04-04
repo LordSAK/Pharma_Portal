@@ -169,15 +169,9 @@
 				Recipient Type:
 			</td>
 			<td>
-				<select name="RecipientType" id="RecipientType"  >
-					<% if  @Recipients.userType== "Physician" %>
-						<option value="Physician" selected >Physician</option>
-						<option value="Hospital" >Hospital</option>
-					<% else %>
-						<option value="Physician" >Physician</option>
-						<option value="Hospital" selected >Hospital</option>
-					<% end %>
-				</select>
+				
+				<%= select_tag "RecipientType", options_for_select(["All","Physician","Hospital"],@userType) %>
+				
 
 			</td>
 		</tr>
@@ -323,7 +317,8 @@
 						Spend Activity Type:
 					</td>
 					<td>
-						<input type="text" name="ActivityType" id="ActivityType" value='<%= @spends.ActivityType %>' />
+						
+						<%= select_tag "ActivityType", options_for_select(["All","Call","Advisory Board"], @spends.ActivityType) %>
 					</td>
 				</tr>
 				<tr>
@@ -331,7 +326,7 @@
 						Spend Details Type:
 					</td>
 					<td>
-						<input type="text" name="DetailType" id="DetailType" value='<%= @spends.DetailType %>' />
+						<%= select_tag "DetailType", options_for_select(["All","Lunch","Travel","Souvenir","Meal","Contracted Fee"], @spends.DetailType) %>
 					</td>
 				</tr>
 				<tr>

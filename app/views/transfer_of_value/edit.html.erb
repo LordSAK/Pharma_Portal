@@ -51,7 +51,7 @@
 					Spend Activity Type:
 				</td>
 				<td>
-					<input type="text" name="ActivityType" id="ActivityType" value='<%= @spends.ActivityType %>' />
+					<%= select_tag "ActivityType", options_for_select(["All","Call","Advisory Board"], @activity) %>
 				</td>
 			</tr>
 			<tr>
@@ -59,7 +59,7 @@
 					Spend Detail Type:
 				</td>
 				<td>
-					<input type="text" name="DetailType" id="DetailType" value='<%= @spends.DetailType %>' />
+					<%= select_tag "DetailType", options_for_select(["All","Lunch","Travel","Souvenir","Meal","Contracted Fee"], @spends.DetailType) %>
 				</td>
 			</tr>
 			<tr> 
