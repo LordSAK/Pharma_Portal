@@ -103,8 +103,10 @@
 				<% end %>
 			</td>
 			<td>
-				<% if d.Status == "Dispute" %>
-					<%= link_to "Correct Spend",edit_transfer_of_value_path(d.AmountID), style: "color:#0099cc;font-weight:bold" %>
+				<% if current_user=="Employee"%>
+					<% if d.Status == "Dispute" %>
+						<%= link_to "Correct Spend",edit_transfer_of_value_path(d.AmountID), style: "color:#0099cc;font-weight:bold" %>
+					<% end %>
 				<% end %>
 			</td>			
 		</tr>
