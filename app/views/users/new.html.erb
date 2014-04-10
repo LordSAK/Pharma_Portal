@@ -48,100 +48,421 @@ $(document).ready(function(){
 
 
 
-    <%= form_tag({controller: :users,:action => :create}) do |f| %>
+<%= form_tag({controller: :users,:action => :create}) do |f| %>
+  <div align="center">
+    <table align="center" boder="2" width="40%">
+      <tr>
+        <td align="center">
+          <select ID="userType" name="userType">
+            <option Text="Physician" Value="Physician">Physician</option>
+            <option Text="Hospital" Value="Hospital">Hospital</option>
+            <option Text="Employee" Value="Employee">Employee</option>
+          </select>
+        </td>
+      </tr>
+    </table>
 
-      <table align="center" boder="2" width="100%">
-        <tr>
-          <td align="center">
-            <select ID="userType" name="userType">
-              <option Text="Physician" Value="Physician">Physician</option>
-              <option Text="Hospital" Value="Hospital">Hospital</option>
-              <option Text="Employee" Value="Employee">Employee</option>
-            </select>
-          </td>
-        </tr>
-      </table>
-      <table id="employee" align="center" width="100%">
-        <tr>
-          <td align="center">
-            <select ID="DropDownList1" name="suffix1">
-              <option Text="Title">Title</option>
-              <option Text="Mr." Value="Mr.">Mr.</option>
-              <option Text="Ms." Value="Ms.">Ms.</option>
-              <option Text="Dr." Value="Dr.">Dr.</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            <%= text_field_tag :FirstName,nil,:placeholder => 'First Name' %>
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            <%= text_field_tag :LastName,nil,:placeholder =>'Last Name' %>
-          </td>
-        </tr>
-        <tr>
-          <td align="center">      
-            
-            <%= text_field_tag :email2,nil,:placeholder => 'Email' %>
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            
-            <%= password_field_tag :password2,nil,:placeholder => 'Password' %>
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            
-            <%= password_field_tag :password_confirmation2,nil,:placeholder => 'Re-Enter Password' %>
-          </td>
-        </tr>
-      </table>
 
-      <table id="hospital" align="center" width="100%">
-        <tr>
-          <td align="center">
-            <%= text_field_tag :teachingHospitalName,nil,:placeholder =>'Hospital Name'%>
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            <%= text_field_tag :teachingHospitalTaxIDNumber,nil,:placeholder => 'Tax ID' %>
-        <tr>
-          <td align="center">      
-            
-            <%= text_field_tag :email1,nil,:placeholder => 'Email' %>
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            
-            <%= password_field_tag :password1,nil,:placeholder => 'Password' %>
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            
-            <%= password_field_tag :password_confirmation1,nil,:placeholder => 'Re-Enter Password' %>
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            
-            <%= text_field_tag :businessAddress1,nil,:placeholder => 'Address' %>
-          </td>
-        </tr><tr>
-          <td align="center">
-            
-            <%= text_field_tag :city1,nil,:placeholder => 'City' %>
-          </td>
-        </tr><tr>
-          <td align="center">
-            <%= select_tag :state1, options_for_select([
+
+
+
+    <table id="employee" align="center" width="100%">
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold">Basic Details</td>
+      </tr>
+      <tr>
+        <td><hr/>
+          Suffix
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<select ID="DropDownList1" name="suffix1">
+            <option Text="Title">Title</option>
+            <option Text="Mr." Value="Mr.">Mr.</option>
+            <option Text="Ms." Value="Ms.">Ms.</option>
+            <option Text="Dr." Value="Dr.">Dr.</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= label_tag "First Name" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<%= text_field_tag :FirstName,nil,:placeholder => 'First Name' %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= label_tag "Last Name" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<%= text_field_tag :LastName,nil,:placeholder =>'Last Name' %>
+        </td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold">Login Details</td>
+      </tr>
+      <tr>
+        <td>
+          <hr/>
+          <%= label_tag "Email" %>
+        </td>
+      </tr>
+      <tr>
+        <td >      
+          &nbsp;&nbsp;&nbsp;<%= text_field_tag :email2,nil,:placeholder => 'Email' %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= label_tag "Password" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<%= password_field_tag :password2,nil,:placeholder => 'Password' %>
+        </td>
+      </tr>
+      <tr>
+         <td>
+          <%= label_tag "Confirm Password" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+           &nbsp;&nbsp;&nbsp;<%= password_field_tag :password_confirmation2,nil,:placeholder => 'Re-Enter Password' %>
+        </td>
+      </tr>
+    </table>
+
+
+
+
+
+
+
+    <table id="hospital" align="center" width="100%">
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold">Basic Details</td>
+      </tr>
+      <tr>
+        <td>
+          <hr/>
+          <%= label_tag "Hospital Name" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<%= text_field_tag :teachingHospitalName,nil,:placeholder =>'Hospital Name'%>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= label_tag "Hospital Tax ID" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          &nbsp;&nbsp;&nbsp;<%= text_field_tag :teachingHospitalTaxIDNumber,nil,:placeholder => 'Tax ID' %>
+        </td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold">Login Details</td>
+      </tr>
+      <tr>
+        <td>
+          <hr/>
+          <%= label_tag "Email" %>
+        </td>
+      </tr>
+      <tr>
+        <td >      
+            &nbsp;&nbsp;&nbsp;<%= text_field_tag :email1,nil,:placeholder => 'Email' %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= label_tag "Password" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+            &nbsp;&nbsp;&nbsp;<%= password_field_tag :password1,nil,:placeholder => 'Password' %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= label_tag "Confirm Password" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<%= password_field_tag :password_confirmation1,nil,:placeholder => 'Re-Enter Password' %>
+        </td>
+      </tr>
+       <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold">Contact Details</td>
+      </tr>
+      <tr>
+        <td>
+          <hr/>
+          <%= label_tag "Address" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<%= text_field_tag :businessAddress1,nil,:placeholder => 'Address' %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= label_tag "City" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+            &nbsp;&nbsp;&nbsp;<%= text_field_tag :city1,nil,:placeholder => 'City' %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= label_tag "State" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<%= select_tag :state1, options_for_select([
+                               "State",
+                                "Alabama AL",
+                                "Alaska AK",
+                                "Arizona AZ",
+                                "Arkansas AR",
+                                "California CA",
+                                "Colorado CO",
+                                "Connecticut CT",
+                                "Delaware DE",
+                                "Florida FL",
+                                "Georgia GA",
+                                "Hawaii HI",
+                                "Idaho ID",
+                                "Illinois IL",
+                                "Indiana IN",
+                                "Iowa IA",
+                                "Kansas KS",
+                                "Kentucky KY",
+                                "Louisiana LA",
+                                "Maine ME",
+                                "Maryland MD",
+                                "Massachusetts MA",
+                                "Michigan MI",
+                                "Minnesota MN",
+                                "Mississippi MS",
+                                "Missouri MO",
+                                "Montana MT",
+                                "Nebraska NE",
+                                "Nevada NV",
+                                "New Hampshire NH",
+                                "New Jersey NJ",
+                                "New Mexico NM",
+                                "New York NY",
+                                "North Carolina NC",
+                                "North Dakota ND",
+                                "Ohio OH",
+                                "Oklahoma OK",
+                                "Oregon OR",
+                                "Pennsylvania PA",
+                                "Rhode Island RI",
+                                "South Carolina SC",
+                                "South Dakota SD",
+                                "Tennessee TN",
+                                "Texas TX",
+                                "Utah UT",
+                                "Vermont VT",
+                                "Virginia VA",
+                                "Washington WA",
+                                "West Virginia WV",
+                                "Wisconsin WI",
+                                "Wyoming WY" ]),:style => "width:154px" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= label_tag "Zip" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+            &nbsp;&nbsp;&nbsp;<%= text_field_tag :zip1,nil,:placeholder => 'Zip' %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= label_tag "Country" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<%= text_field_tag :country1,nil,:placeholder =>'Country' %>
+        </td>
+      </tr>
+    </table>
+
+
+
+
+    <table id="physician" align="center" width="100%" border="0">
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold">Basic Details</td>
+      </tr>
+      <tr>
+        <td>
+          <hr/>
+          <%= label_tag "Suffix" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<select ID="DropDownList1" name="suffix">
+            <option Text="Title">Title</option>
+            <option Text="Mr." Value="Mr.">Mr.</option>
+            <option Text="Ms." Value="Ms.">Ms.</option>
+            <option Text="Dr." Value="Dr.">Dr.</option>
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <%= label_tag "First Name" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<%= text_field_tag :physicianFirstName,nil,:placeholder => 'First Name' %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <%= label_tag "Middle Name" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<%= text_field_tag :physicianMiddleName,nil,:placeholder => 'Middle Name' %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <%= label_tag "Last Name" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<%= text_field_tag :physicianLastName,nil,:placeholder => 'Last Name' %>
+        </td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold">Login Details</td>
+      </tr>
+      <tr>
+        <td>
+          <hr/>
+          <%= label_tag "Email" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<%= text_field_tag :email,nil,:placeholder => 'Email' %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <%= label_tag "Password" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<%= password_field_tag :password,nil,:placeholder =>  'Password' %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <%= label_tag "Confirm Password" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<%= password_field_tag :password_confirmation,nil,:placeholder =>  'Re-Enter Password' %>
+        </td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold">Contact Details</td>
+      </tr>
+      <tr>
+        <td>
+          <hr/>
+          <%= label_tag "Address" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<%= text_field_tag :businessAddress,nil,:placeholder =>  'Address' %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <%= label_tag "City" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<%= text_field_tag :city,nil,:placeholder => 'City' %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <%= label_tag "State" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<%= select_tag :state, options_for_select([
                                 "State",
                                 "Alabama AL",
                                 "Alaska AK",
@@ -193,162 +514,78 @@ $(document).ready(function(){
                                 "West Virginia WV",
                                 "Wisconsin WI",
                                 "Wyoming WY" ]),:style => "width:154px" %>
-          </td>
-        </tr><tr>
-          <td align="center">
-            
-            <%= text_field_tag :zip1,nil,:placeholder => 'Zip' %>
-          </td>
-        </tr><tr>
-          <td align="center">
-            
-            <%= text_field_tag :country1,nil,:placeholder =>'Country' %>
-          </td>
-        </tr>
-      </table>
-      <table id="physician" align="center" width="100%">
-        <tr>
-          <td align="center">
-            <select ID="DropDownList1" name="suffix">
-              <option Text="Title">Title</option>
-              <option Text="Mr." Value="Mr.">Mr.</option>
-              <option Text="Ms." Value="Ms.">Ms.</option>
-              <option Text="Dr." Value="Dr.">Dr.</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            <%= text_field_tag :physicianFirstName,nil,:placeholder => 'First Name' %>
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            <%= text_field_tag :physicianMiddleName,nil,:placeholder => 'Middle Name' %>
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            <%= text_field_tag :physicianLastName,nil,:placeholder => 'Last Name' %>
-          </td>
-        </tr>
-        <tr>
-          <td align="center">      
-            
-            <%= text_field_tag :email,nil,:placeholder => 'Email' %>
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            
-            <%= password_field_tag :password,nil,:placeholder =>  'Password' %>
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            
-            <%= password_field_tag :password_confirmation,nil,:placeholder =>  'Re-Enter Password' %>
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            
-            <%= text_field_tag :businessAddress,nil,:placeholder =>  'Address' %>
-          </td>
-        </tr><tr>
-          <td align="center">
-            
-            <%= text_field_tag :city,nil,:placeholder => 'City' %>
-          </td>
-        </tr><tr>
-          <td align="center">
-            <%= select_tag :state, options_for_select([
-                                "State",
-                                "Alabama AL",
-                                "Alaska AK",
-                                "Arizona AZ",
-                                "Arkansas AR",
-                                "California CA",
-                                "Colorado CO",
-                                "Connecticut CT",
-                                "Delaware DE",
-                                "Florida FL",
-                                "Georgia GA",
-                                "Hawaii HI",
-                                "Idaho ID",
-                                "Illinois IL",
-                                "Indiana IN",
-                                "Iowa IA",
-                                "Kansas KS",
-                                "Kentucky KY",
-                                "Louisiana LA",
-                                "Maine ME",
-                                "Maryland MD",
-                                "Massachusetts MA",
-                                "Michigan MI",
-                                "Minnesota MN",
-                                "Mississippi MS",
-                                "Missouri MO",
-                                "Montana MT",
-                                "Nebraska NE",
-                                "Nevada NV",
-                                "New Hampshire NH",
-                                "New Jersey NJ",
-                                "New Mexico NM",
-                                "New York NY",
-                                "North Carolina NC",
-                                "North Dakota ND",
-                                "Ohio OH",
-                                "Oklahoma OK",
-                                "Oregon OR",
-                                "Pennsylvania PA",
-                                "Rhode Island RI",
-                                "South Carolina SC",
-                                "South Dakota SD",
-                                "Tennessee TN",
-                                "Texas TX",
-                                "Utah UT",
-                                "Vermont VT",
-                                "Virginia VA",
-                                "Washington WA",
-                                "West Virginia WV",
-                                "Wisconsin WI",
-                                "Wyoming WY" ]),:style => "width:154px" %>
-          </td>
-        </tr><tr>
-          <td align="center">
-            
-            <%= text_field_tag :zip,nil,:placeholder => 'Zip' %>
-          </td>
-        </tr><tr>
-          <td align="center">
-            
-            <%= text_field_tag :country,nil,:placeholder => 'Country' %>
-          </td>
-        </tr>
+        </td>
+      </tr>
 
-        <tr>
-          <td align="center">
-            
-            <%= text_field_tag :physicianPrimaryType,nil,:placeholder => 'Primary Type' %>
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            
-            <%= text_field_tag :physicianNPI,nil,:placeholder => 'NPI' %>
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            
-            <%= text_field_tag :physicianSpecialty,nil,:placeholder => 'Specialty' %>
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            
-            <%= select_tag :physicianLicenseState,options_for_select([
+      <tr>
+        <td>
+          <%= label_tag "Zip" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          &nbsp;&nbsp;&nbsp;<%= text_field_tag :zip,nil,:placeholder => 'Zip' %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= label_tag "Country" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          &nbsp;&nbsp;&nbsp;<%= text_field_tag :country,nil,:placeholder => 'Country' %>
+        </td>
+      </tr>
+      
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td style="font-weight:bold">Other Details</td>
+      </tr>
+      <tr>
+        <td>
+          <hr/>
+          <%= label_tag "Primary Type" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<%= text_field_tag :physicianPrimaryType,nil,:placeholder => 'Primary Type' %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <%= label_tag "NPI" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<%= text_field_tag :physicianNPI,nil,:placeholder => 'NPI' %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <%= label_tag "Specialty" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<%= text_field_tag :physicianSpecialty,nil,:placeholder => 'Specialty' %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <%= label_tag "License State" %>
+        </td>
+      </tr>
+      <tr>
+        <td >
+          &nbsp;&nbsp;&nbsp;<%= select_tag :physicianLicenseState,options_for_select([
                                 "License State",
                                 "Alabama AL",
                                 "Alaska AK",
@@ -400,20 +637,29 @@ $(document).ready(function(){
                                 "West Virginia WV",
                                 "Wisconsin WI",
                                 "Wyoming WY" ]),:style => "width:154px" %>
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            
-            <%= text_field_tag :physicianLicenseNumber,nil,:placeholder => 'License Number' %>
-          </td>
-        </tr>
-      </table>
- <table width="84%">
-    <tr>
-      <td align="center">
-      <%= submit_tag "Sign up", :style => "background-color:#181818;border-radius:15px; display:inline-block; color: white; font-family: Raleway; font-size:15px; padding:14px 30px; text-decoration: none; margin-left: 20%; margin-top: 15px; margin-bottom: 15px; text-align:center;" %>
-    </td>
-  </tr>
-</table>
-    <% end %>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <%= label_tag "License Number" %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          &nbsp;&nbsp;&nbsp;<%= text_field_tag :physicianLicenseNumber,nil,:placeholder => 'License Number' %>
+        </td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+      </tr>
+    </table>
+    <table width="84%">
+      <tr>
+        <td >
+          <%= submit_tag "Sign up", :style => "background-color:#181818;border-radius:15px; display:inline-block; color: white; font-family: Raleway; font-size:15px; padding:14px 30px; text-decoration: none; margin-left: 20%; margin-top: 15px; margin-bottom: 15px; text-align:center;" %>
+        </td>
+      </tr>
+    </table>
+  </div>
+<% end %>

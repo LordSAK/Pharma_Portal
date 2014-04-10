@@ -13,7 +13,7 @@ PharmaPortal::Application.routes.draw do
   resources :transfer_of_value
   resources :disputes
   #root to: "static_pages#home"
-  root to: "users#new"
+  root to: "sessions#new"
   match '/dashboard',to: "static_pages#dashboard", via: 'get'
   match '/signup', to: 'users#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'

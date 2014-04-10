@@ -4,9 +4,7 @@
       <br/>
       <%= link_to "Brand 'X'", '#', id: "logo" %>
       <div style="float:right;color:#FFF;margin:5px 15px 0 0">
-        <% if current_user.blank? %>
-          <%= render 'sessions/new' %>
-        <% else %>
+        <% if !current_user.blank? %>
           <% if current_user.userType == "Physician" %>
              <%= "#{current_user.suffix} #{current_user.physicianFirstName} #{current_user.physicianMiddleName} #{current_user.physicianLastName}" %>
           <% elsif current_user.userType == "Hospital" %>

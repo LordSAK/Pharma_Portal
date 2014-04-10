@@ -1,19 +1,32 @@
 <% provide(:title, "Sign in") %>
-<h1>Sign in</h1>
-
-<div class="row">
-  <div class="span6 offset3">
-    <%= form_for(:session, url: sessions_path) do |f| %>
-
-      <%= f.label :email %>
-      <%= f.text_field :email %>
-
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-
-      <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
-    <% end %>
-
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
-  </div>
+<h1 class="title">Sign in</h1>
+<%= form_for(:session, url: sessions_path) do |f| %>
+<div align="center">
+	<table align="center" border="0" width="40%">
+		<tr>
+			<td align="center" style="border-width:0px">
+				<%= f.text_field :email,:placeholder => "Email" %>
+			</td>
+		</tr>
+		<tr>
+			<td style="border-width:0px">
+			</td>
+		</tr>
+		<tr>
+			<td align="center" style="border-width:0px">
+				<%= f.password_field :password, :placeholder => "Password" %>
+			</td>
+		</tr>
+		<tr>
+			<td align="center" style="border-width:0px">
+				<%= f.submit "Sign in", class: "btn btn-large btn-primary", :style => "background-color:#181818;border-radius:10px; display:inline-block; color: white; font-family: Raleway; font-size:12px; padding:8px 18px; text-decoration: none; margin-top: 15px; margin-bottom: 15px; text-align:center;" %>
+			</td>
+        </tr>
+        <tr>
+        	<td align="center" style="border-width:0px">
+				New user? <%= link_to "Sign up now!", signup_path,:style => "color:blue;cursor:pointer;" %>
+        	</td>
+        </tr>
+    </table>
+<% end %>  
 </div>
