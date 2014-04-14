@@ -83,12 +83,14 @@
 <div class="box1" id="recipient">
 	<h2>
 		Recipient's Description
+		<% if !current_user.nil? %>
 		<% if current_user.userType == "Employee" %>
 			<span style="float:right">
 				<a id="Open_Recipient" style="color:blue;cursor:pointer;">
 					Edit
 				</a>
 			</span>
+		<% end %>
 		<% end %>
 	</h2>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Recipient Type: </b><p>&nbsp;&nbsp;&nbsp;<%= @Recipients.userType %></p>
@@ -217,12 +219,14 @@
 <div class="box1">
 	<h2>
 		Spend Description
+		<% if !current_user.nil? %>
 		<% if current_user.userType == "Employee" %>
 			<span style="float:right">
 				<a  id="Open_Spends" style="color:blue;cursor:pointer;">
 					Edit
 				</a>
 			</span>
+		<% end %>
 		<% end %>
 	</h2>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Title: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.paymentName %></p>
@@ -350,12 +354,14 @@
 <div class="box1">
 	<h2>
 		Products
+		<% if !current_user.nil? %>
 		<% if current_user.userType == "Employee" %>
 			<span style="float:right">
 				<a id="Open_Products" style="color:blue;cursor:pointer">
 					Edit
 				</a>
 			</span>
+		<% end %>
 		<% end %>
 	</h2>
 	<% @Products.each_with_index do |p| %>
@@ -503,12 +509,14 @@
 <div class="box1">
 	<h2>
 		3rd Party Payee
+		<% if !current_user.nil? %>
 		<% if current_user.userType == "Employee" %>
 			<span style="float:right">
 				<a id="Open_thirdParty" style="color:blue;cursor:pointer;">
 					Edit
 				</a>
 			</span>
+		<% end %>
 		<% end %>
 	</h2>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">3rd Party Indicatror: </b><p>&nbsp;&nbsp;&nbsp;<%= @ThirdParty.first.ThirdPartyPayemntRecipientIndicator %></p>
@@ -608,11 +616,12 @@
 		<% end %>
 	</div>
 </div>
-
+<% if !current_user.nil? %>
 <% if current_user.id ==  @Recipients.id %>
 	<a id="Open_Dispute" style="background-color:#181818;border-radius:10px; display:inline-block; color: white; font-family: Raleway; font-size:12px; padding:8px 18px; text-decoration: none; margin-top: 15px; margin-bottom: 15px; text-align:center;cursor:pointer;">
 		Raise a Dispute
 	</a>
+<% end %>
 <% end %>
 
 <script type="text/javascript">

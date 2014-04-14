@@ -1,8 +1,8 @@
 <% provide(:title, "Sign in") %>
-<h1 class="title">Sign in</h1>
+<h1 class="title">Sign In</h1>
 <%= form_for(:session, url: sessions_path) do |f| %>
 <div align="center">
-	<table align="center" border="0" width="40%">
+	<table align="center" border="0" width="50%">
 		<tr>
 			<td align="center" style="border-width:0px">
 				<%= f.text_field :email,:placeholder => "Email" %>
@@ -24,7 +24,7 @@
         </tr>
         <tr>
         	<td align="center" style="border-width:0px">
-				New user? <%= link_to "Sign up now!", signup_path,:style => "color:blue;cursor:pointer;" %>
+				New user? <%= link_to "Sign up", signup_path,:style => "color:blue;cursor:pointer;" %>  now or browse <%= link_to "Spends", '/transfer_of_value', :style => "color:blue;cursor:pointer" %>
         	</td>
         </tr>
     </table>
