@@ -552,7 +552,7 @@ $grayMediumLight: #eaeaea;
     -webkit-border-top-left-radius:5px;
 }
 
-.box1 {border:1px solid #545454;background-color:#d3d3d3; font-size: 12px;}
+.box1 {border:1px solid #545454;background-color:#F9F6F9; font-size: 12px;}
 .box1 h2 {background:#bdbdbd;color:black;padding:8px;font-size:14px;font-weight: bold;
 			border:1px solid #545454;}
 .box1 p {color:#333;padding:5px; font-size: 12px;}
@@ -636,3 +636,5 @@ nav li div.dropdown .dropdown-inner {
 nav li span.dropdown a {
   display:block;
 }
+table tr.even {background-color: #3030;height: 12px; outline:thin solid black; }
+table tr.odd {background-color: #3330;height: 12px; outline: thin solid black; }

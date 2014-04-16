@@ -38,7 +38,7 @@
 				</select>
 			</td>-->
 			<td>
-				&nbsp;&nbsp;&nbsp;Recipent Type
+				Recipent Type
 				<select name='UserType'>
 					<option value="All">All</option>
 					<option value="Physician">Physician</option>
@@ -178,7 +178,7 @@
 	</tr>
 	<% else %>
 		<% @spends.each do |s| %>
-		<tr>
+		<tr class="<%= cycle("odd", "even") %>" >
 			<td>
 				<%= link_to s.id,s, style: "color: #0099cc;font-weight:bold" %>
 			</td>

@@ -83,7 +83,7 @@
 	</tr>
 	<% else %>
 		<% @dispute.each do |d| %>
-		<tr>
+		<tr class="<%= cycle("odd", "even") %>">
 			<td>
 				<!-- #link_to d.id,d, style: "color: #0099cc;font-weight:bold" -->
 				<%= d.id %>

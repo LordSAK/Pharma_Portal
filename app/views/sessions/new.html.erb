@@ -1,32 +1,56 @@
 <% provide(:title, "Sign in") %>
-<h1 class="title">Sign In</h1>
+<h1 class="title">Welcome to Brand "X"</h1>
 <%= form_for(:session, url: sessions_path) do |f| %>
 <div align="center">
-	<table align="center" border="0" width="50%">
+	<table>
 		<tr>
-			<td align="center" style="border-width:0px">
-				<%= f.text_field :email,:placeholder => "Email" %>
+			<td>
+				<table align="left" border="0" >
+					<tr>
+						<td>
+							<br/>
+							<%= image_tag "Physician.jpg", :height => "180px", :width => "300px" %>
+							<br/>
+							<%= image_tag "hospital.png", :height => "200px", :width => "149px" %>
+							<%= image_tag "pills.png", :height => "200px", :width => "149px" %>
+						</td>
+					</tr>
+				</table>
 			</td>
-		</tr>
-		<tr>
-			<td style="border-width:0px">
-			</td>
-		</tr>
-		<tr>
-			<td align="center" style="border-width:0px">
-				<%= f.password_field :password, :placeholder => "Password" %>
-			</td>
-		</tr>
-		<tr>
-			<td align="center" style="border-width:0px">
-				<%= f.submit "Sign in", class: "btn btn-large btn-primary", :style => "background-color:#181818;border-radius:10px; display:inline-block; color: white; font-family: Raleway; font-size:12px; padding:8px 18px; text-decoration: none; margin-top: 15px; margin-bottom: 15px; text-align:center;" %>
-			</td>
-        </tr>
-        <tr>
-        	<td align="center" style="border-width:0px">
-				New user? <%= link_to "Sign up", signup_path,:style => "color:blue;cursor:pointer;" %>  now or browse <%= link_to "Spends", '/transfer_of_value', :style => "color:blue;cursor:pointer" %>
-        	</td>
-        </tr>
+			<td>
+				&nbsp;&nbsp;&nbsp;
+				<table align="right" border="0">
+					<th>
+						Sign in
+					</th>
+					<tr>
+						<td align="center" style="border-width:0px">
+							<%= f.text_field :email,:placeholder => "Email" %>
+						</td>
+					</tr>
+					<tr>
+						<td style="border-width:0px">
+						</td>
+					</tr>
+					<tr>
+						<td align="center" style="border-width:0px">
+							<%= f.password_field :password, :placeholder => "Password" %>
+						</td>
+					</tr>
+					<tr>
+						<td align="center" style="border-width:0px">
+							<%= f.submit "Sign in", class: "btn btn-large btn-primary", :style => "background-color:#181818;border-radius:10px; display:inline-block; color: white; font-family: Raleway; font-size:12px; padding:8px 18px; text-decoration: none; margin-top: 15px; margin-bottom: 15px; text-align:center;" %>
+						</td>
+        			</tr>
+        			<tr>
+        				<td align="center" style="border-width:0px">
+							New user? <%= link_to "Sign up", signup_path,:style => "color:blue;cursor:pointer;" %>  now or browse <%= link_to "Spends", '/transfer_of_value', :style => "color:blue;cursor:pointer" %>
+        				</td>
+        			</tr>
+    			</table>
+    		</td>
+    	</tr>
     </table>
-<% end %>  
 </div>
+<% end %>  
+
