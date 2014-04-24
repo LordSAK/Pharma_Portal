@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140407101715) do
+ActiveRecord::Schema.define(version: 20140423123954) do
 
   create_table "associated_products", force: true do |t|
     t.string   "productIndicator"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 20140407101715) do
     t.datetime "updated_at"
     t.string   "ActivityType"
     t.string   "DetailType"
+    t.string   "form_of_payment"
   end
 
   create_table "users", force: true do |t|

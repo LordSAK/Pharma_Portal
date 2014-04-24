@@ -144,21 +144,29 @@
 	if(Privileges.val() == 'Physician')
 	{
 	    $('#physician').show();
+	    $('#BusinessPurposePhysician').show();
     	$('#hospital').hide();
+    	$('#BusinessPurposeHospital').hide();
 	}
 	else
 	{
 		$('#physician').hide(); // hide div if value is not "custom"
+	    $('#BusinessPurposePhysician').hide();
     	$('#hospital').show();
+    	$('#BusinessPurposeHospital').show();
 	}
 	Privileges.change(function () {
 		if ($(this).val() == 'Physician') {
 	        $('#physician').show();
+	        $('#BusinessPurposePhysician').show();
     	    $('#hospital').hide();
+    	    $('#BusinessPurposeHospital').hide();
 	    }
     	else {
 	    	$('#physician').hide(); // hide div if value is not "custom"
+	    	$('#BusinessPurposePhysician').hide();
     		$('#hospital').show();
+    		$('#BusinessPurposeHospital').show();
     	}
 	});
 });
@@ -230,6 +238,7 @@
 		<% end %>
 	</h2>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Title: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.paymentName %></p>
+	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Form of Payment: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.form_of_payment %></p>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Amount: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.totalAmount %></p>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Business Purpose: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.NatureofPayment %></p>
 	&nbsp;&nbsp;&nbsp;<b style="font-size:14px">Number of Payments: </b><p>&nbsp;&nbsp;&nbsp;<%= @spends.numberofPayment %></p>
@@ -282,20 +291,78 @@
 				</tr>
 				<tr>
 					<td>
+						Form of Payment
+					</td>
+					<td>
+						<%= select_tag "payment_method",options_for_select(
+							["Cash or cash equivalent",
+							"In-kind items and services",
+							"stock/stock option/other ownership interest",
+							"dividend/profit/return on investment"
+							]) %>
+					</td>
+				</tr>
+				<tr>
+					<td>
 						Amount: 
 					</td>
 					<td>
 						<input type="text" name="amount" id="amount" value="<%= @spends.totalAmount %>" />
 					</td>
 				</tr>
+			</table>
+			<table id="BusinessPurposeHospital">
 				<tr>
 					<td>
 						Business Purpose: 
 					</td>
 					<td>
-						<input type="text" name="purpose" id="purpose" value="<%= @spends.NatureofPayment %>" />
+						<%= select_tag "purpose",options_for_select([
+							"Consulting Fee",
+							"Service(faculty/speaker at venue other than a continuing education program)",
+							"Honoraria",
+							"Gift",
+							"Entertainment",
+							"Food and Beverage",
+							"Travel and Lodging",
+							"Education",
+							"Charitable Contribution",
+							"Royalty/License",
+							"Current/prospective ownership/investment interest",
+							"Service(faculty/speaker for a non-accredited/noncertified continuing education program)",
+							"Service(faculty/speaker for an accredited/certified continuing education program)",
+							"Grant",
+							"Space rental/facility fees"
+						]) %>
 					</td>
 				</tr>
+			</table>
+			<table id="BusinessPurposePhysician">
+				<tr>
+					<td>
+						Business Purpose: 
+					</td>
+					<td>
+						<%= select_tag "purpose",options_for_select([
+							"Consulting Fee",
+							"Service(faculty/speaker at venue other than a continuing education program)",
+							"Honoraria",
+							"Gift",
+							"Entertainment",
+							"Food and Beverage",
+							"Travel and Lodging",
+							"Education",
+							"Charitable Contribution",
+							"Royalty/License",
+							"Current/prospective ownership/investment interest",
+							"Service(faculty/speaker for a non-accredited/noncertified continuing education program)",
+							"Service(faculty/speaker for an accredited/certified continuing education program)",
+							"Grant"
+						]) %>
+					</td>
+				</tr>
+			</table>
+			<table>
 				<tr>
 					<td>
 						Number of Payments:
@@ -645,7 +712,7 @@
 
 
 
-<div id="dispute_dialog" title="Dispute" style="font-size:12px;" hidden >
+<div id="dispute_dialog" title="Dispute an Expense" style="font-size:12px;" hidden >
 	<%= form_tag({controller: "disputes",:action => :create, :remote => true}) do |f| %>
 		<table>
 			<tr>

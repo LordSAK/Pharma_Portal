@@ -7,7 +7,7 @@ class TransferOfValueController < ApplicationController
     end
 
     def create
-        @spen=TransferOfValue.new(:paymentName => params[:title],:totalAmount => params[:amount] ,:NatureofPayment => params[:purpose], :numberofPayment => params[:num_of_pay],:DateofPayment => params[:spend_date],:ActivityType => params[:ActivityType],:DetailType => params[:DetailType])
+        @spen=TransferOfValue.new(:paymentName => params[:title],:totalAmount => params[:amount] ,:NatureofPayment => params[:purpose],:form_of_payment => params[:payment_method], :numberofPayment => params[:num_of_pay],:DateofPayment => params[:spend_date],:ActivityType => params[:ActivityType],:DetailType => params[:DetailType])
         @spen.save
         @spend_id=TransferOfValue.last.id
 
@@ -151,6 +151,7 @@ class TransferOfValueController < ApplicationController
         @spen=TransferOfValue.find(params[:id])
 
         @spen.update_attribute(:paymentName,params[:title])
+        @spen.update_attribute(:form_of_payment,params[:payment_method])
         @spen.update_attribute(:totalAmount,params[:amount])
         @spen.update_attribute(:NatureofPayment,params[:purpose])
         @spen.update_attribute(:numberofPayment,params[:num_of_pay])
